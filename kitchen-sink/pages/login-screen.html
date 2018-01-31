@@ -42,9 +42,10 @@
                             <ul>
                                 <li class="item-content item-input">
                                     <div class="item-inner">
-                                        <div class="item-title item-label">Username</div>
+                                        <div class="item-title item-label">User Email</div>
                                         <div class="item-input-wrap">
-                                            <input type="text" name="username" id="demo-username-1"
+                                            <!--type="text"-->
+                                            <input type="email" name="email" id="demo-useremail-1"
                                                    placeholder="Your username">
                                             <span class="input-clear-button"></span>
                                         </div>
@@ -89,14 +90,15 @@
     });
 
 
-
     // noinspection JSAnnotator
     return {
         methods: {
             signIn: function () {
                 var $ = this.$;
                 var app = this.$app;
-                var username = $('input#demo-username-1').val();
+
+                var email = $('input#demo-useremail-1').val();
+                // var username = $('input#demo-username-1').val();
                 var password = $('input#demo-password-1').val();
 
 
@@ -104,17 +106,33 @@
 
                 var $$ = Dom7;
 
-                app.request.post('../login.php', {registration: "success", name: "xyz", email: "abc@gmail.com"}, function (data) {
+                app.request.post('../authenticate.php', {email: email, password: password}, function (data) {
 
-                    console.log(data);
+                        console.log(data);
 
-                    // $$('.login').html(data);
-                    console.log('Load was performed');
-                },
-                function (data) {
-                    console.log("error");
+                        // console.log(data.abc);
+                        // console.log(data["abc"]);
+                        // console.log(data[0]["abc"]);
 
-                }
+                        // $$('.login').html(data);
+                        // console.log('Load was performed');
+
+                        app.dialog.alert('<b>Login Success </b> <br>Your Email: ' + email + '<br>Password: ' + password, function () {
+                            app.loginScreen.close();
+
+                            // console.log(data.abc);
+                        });
+
+
+
+
+
+
+                    },
+                    function (data) {
+                        console.log("error");
+
+                    }
                 );
 
                 // $.ajax({
@@ -127,11 +145,7 @@
                 //     success: function (result) {
                 //     console.log("dfdf");
                 //
-                //     app.dialog.alert('Username: ' + username + '<br>Password: ' + password, function () {
-                //         app.loginScreen.close();
-                //
-                //         console.log(result.abc);
-                //     });
+
                 // }
                 // });
 
