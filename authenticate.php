@@ -15,6 +15,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 //    $uname = isset($_POST["username"]) ? $_POST["username"] : "";
     $password = isset($_POST["password"]) ? $_POST["password"] : "";
 
+
+//    print("email: ");
+//    print("password: ");
 //    print($email);
 //    print($password);
 
@@ -22,11 +25,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 
+
 if (($email == "") && ($password == "")) {
 
-    print("At line 28");
+//    print("At line 28");
 
     // some action goes here under php
+//    echo json_last_error('Please Fill every detail for login, i.e. email and password.');
     echo json_encode(array("abc" => 'Please Fill every detail for login, i.e. email and password'));
 
 }
@@ -46,7 +51,8 @@ $connection = new mysqli($hn, $un, $pw, $db);
 
 if ($connection->connect_error) {
 
-    print("At line 49");
+//    print("At line 49");
+
 
     echo json_encode(array("abc" => 'Connection error with database, please try again '));
 //    die($connection->connect_error);
@@ -76,17 +82,25 @@ if (isset($email) && isset($password)) {
 //    print($query);
 //    exit();
 
-    print("result:      ");
+//    print("result: ");
 //    $result = $conn->query($query);
     $result = $connection->query($query);
 
 
     if (!$result) {
 
+//        echo json_error('Email not found please enter valid email.');
         echo json_encode(array("abc" => 'Email not found please enter valid email.'));
 //        die($connection->error);
-    } elseif ($result->num_rows) {
+    } elseif (0 == ($result->num_rows)) {
+
+        echo json_encode(array("abc" => 'Email not found please enter valid email.'));
+
+    } else {
+
+
         $row = $result->fetch_array(MYSQLI_NUM);
+
 
 //            $row = $result->fetch_array(MYSQLI_ASSOC);
 
@@ -114,6 +128,8 @@ if (isset($email) && isset($password)) {
 
 //            header('Location: ./index.php');
             //echo "<p><a href='user_post.php'>Click here to continue</a></p>";
+        } else {
+            echo json_encode(array("abc" => 'Password not correct.'));
         }
 
 

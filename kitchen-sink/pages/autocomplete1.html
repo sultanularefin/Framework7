@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1,
+         maximum-scale = 1, minimum-scale = 1, user-scalable = no, minimal-ui" />
+    <meta name = "apple-mobile-web-app-capable" content = "yes" />
+    <meta name = "apple-mobile-web-app-status-bar-style" content = "black" />
+    <title>Autocomplete</title>
+    <link rel = "stylesheet"
+          href = "https://cdnjs.cloudflare.com/ajax/libs/framework7/1.4.2/css/framework7.ios.min.css" />
+    <link rel = "stylesheet"
+          href = "https://cdnjs.cloudflare.com/ajax/libs/framework7/1.4.2/css/framework7.ios.colors.min.css" />
+</head>
+
+<body>
+<div class = "views">
+    <div class = "view view-main">
+        <div class = "pages">
+            <div data-page = "home" class = "page navbar-fixed">
+
+                <div class = "navbar">
+                    <div class = "navbar-inner">
+                        <div class = "left"> </div>
+                        <div class = "center">Autcomplete</div>
+                        <div class = "right"> </div>
+                    </div>
+                </div>
+
+                <div class = "page-content">
+                    <div class = "content-block-title">Simple Dropdown Autocomplete</div>
+                    <div class = "list-block">
+                        <ul>
+                            <li class = "item-content">
+                            <div class = "item-title label">Country</div>
+                            <div class = "item-input">
+                                <input type = "text" placeholder = "Country" id = "autocomplete-dropdown">
+                            </div>
+                        </li>
+
+                        </ul>
+                    </div>
+
+                    <div class = "content-block-title">Dropdown With Input Expand</div>
+                    <div class = "list-block">
+                        <ul>
+                            <li class = "item-content">
+                                <div class = "item-title label">Country</div>
+                                <div class = "item-input">
+                                    <input type = "text" placeholder = "Country" id = "autocomplete-dropdown-expand">
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class = "content-block-title">Dropdown With All Values</div>
+                    <div class = "list-block">
+                        <ul>
+                            <li class = "item-content">
+                                <div class = "item-title label">Country</div>
+                                <div class = "item-input">
+                                    <input type = "text" placeholder = "Country" id = "autocomplete-dropdown-all">
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class = "content-block-title">Dropdown With Placeholder</div>
+                    <div class = "list-block">
+                        <ul>
+                            <li class = "item-content">
+                                <div class = "item-title label">Country</div>
+                                <div class = "item-input">
+                                    <input type = "text" placeholder = "Country" id = "autocomplete-dropdown-placeholder">
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class = "content-block-title">Simple Standalone Autocomplete</div>
+                    <div class = "list-block">
+                        <ul>
+                            <li>
+                                <a href = "#" id = "autocomplete-standalone" class = "item-link item-content autocomplete-opener">
+                                <input type = "hidden">
+                                <div class = "item-inner">
+                                    <div class = "item-title">Favorite Country</div>
+                                    <div class = "item-after"></div>
+                                </div>
+                            </a>
+
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <div class = "content-block-title">Popup Standalone Autocomplete</div>
+                    <div class = "list-block">
+                        <ul>
+                            <li>
+                                <a href = "#" id = "autocomplete-standalone-popup" class = "item-link item-content autocomplete-opener">
+                                    <input type = "hidden">
+                                    <div class = "item-inner">
+                                        <div class = "item-title">Favorite Country</div>
+                                        <div class = "item-after"></div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class = "content-block-title">Multiple Values Standalone Autocomplete</div>
+                    <div class = "list-block">
+                        <ul>
+                            <li>
+                                <a href = "#" id = "autocomplete-standalone-multiple" class = "item-link item-content autocomplete-opener">
+                                    <input type = "hidden">
+                                    <div class = "item-inner">
+                                        <div class = "item-title">Favorite Countries</div>
+                                        <div class = "item-after"></div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type  =  "text/javascript"
+        src  =  "https://cdnjs.cloudflare.com/ajax/libs/framework7/1.4.2/js/framework7.min.js"></script>
+
+<script>
+    var myApp  =  new Framework7();
+    var $$  =  Dom7;
+    var mainView  =  myApp.addView('.view-main');
+
+    // Countries data array
+    var countries  =  ('India Africa Australia NewZealand England WestIndies Scotland Zimbabwe Srilanka Bangladesh').split(' ');
+
+    // Simple Dropdown
+    var autocompleteDropdownSimple  =  myApp.autocomplete ({
+        input: '#autocomplete-dropdown',
+        openIn: 'dropdown',
+
+        source: function (autocomplete, query, render) {
+            var results  =  [];
+            if (query.length === 0) {
+                render(results);
+                return;
+            }
+
+            // You can find matched items
+            for (var i = 0; i < countries.length; i++) {
+                if (countries[i].toLowerCase().indexOf(query.toLowerCase()) >= 0)
+                    results.push(countries[i]);
+            }
+            // Display the items by passing array with result items
+            render(results);
+        }
+    });
+
+    // Dropdown with input expand
+    var autocompleteDropdownExpand = myApp.autocomplete ({
+        input: '#autocomplete-dropdown-expand',
+        openIn: 'dropdown',
+        expandInput: true,   // expandInput used as item-input in List View will be expanded to full screen wide
+                             //during dropdown
+        source: function (autocomplete, query, render) {
+            var results = [];
+            if (query.length === 0) {
+                render(results);
+                return;
+            }
+            // Find matched items
+            for (var i = 0; i < countries.length; i++) {
+                if (countries[i].toLowerCase().indexOf(query.toLowerCase()) >= 0) results.push(countries[i]);
+            }
+            // Display the items by passing array with result items
+            render(results);
+        }
+    });
+
+    // Dropdown with all values
+    var autocompleteDropdownAll = myApp.autocomplete ({
+        input: '#autocomplete-dropdown-all',
+        openIn: 'dropdown',
+
+        source: function (autocomplete, query, render) {
+            var results = [];
+
+            // You can find matched items
+            for (var i = 0; i < countries.length; i++) {
+                if (countries[i].toLowerCase().indexOf(query.toLowerCase()) >= 0)
+                    results.push(countries[i]);
+            }
+            // Display the items by passing array with result items
+            render(results);
+        }
+    });
+
+    // Dropdown with placeholder
+    var autocompleteDropdownPlaceholder = myApp.autocomplete ({
+        input: '#autocomplete-dropdown-placeholder',
+        openIn: 'dropdown',
+        dropdownPlaceholderText: 'Type as "India"',
+        source: function (autocomplete, query, render) {
+            var results = [];
+            if (query.length === 0) {
+                render(results);
+                return;
+            }
+
+            // You can find matched items
+            for (var i = 0; i < countries.length; i++) {
+                if (countries[i].toLowerCase().indexOf(query.toLowerCase()) >= 0)
+                    results.push(countries[i]);
+            }
+
+            // Display the items by passing array with result items
+            render(results);
+        }
+    });
+
+    // Simple Standalone
+    var autocompleteStandaloneSimple = myApp.autocomplete ({
+        openIn: 'page', //open in page
+        opener: $$('#autocomplete-standalone'), //link that opens autocomplete
+        backOnSelect: true, //go back after we select something
+
+        source: function (autocomplete, query, render) {
+            var results = [];
+            if (query.length === 0) {
+                render(results);
+                return;
+            }
+
+            // You can find matched items
+            for (var i = 0; i < countries.length; i++) {
+                if (countries[i].toLowerCase().indexOf(query.toLowerCase()) >= 0)
+                    results.push(countries[i]);
+            }
+            // Display the items by passing array with result items
+            render(results);
+        },
+
+        onChange: function (autocomplete, value) {
+            // Here add the item text value to item-after
+            $$('#autocomplete-standalone').find('.item-after').text(value[0]);
+
+            // You can add item value to input value
+            $$('#autocomplete-standalone').find('input').val(value[0]);
+        }
+    });
+
+    // Standalone Popup
+    var autocompleteStandalonePopup = myApp.autocomplete ({
+        openIn: 'popup', // Opens the Autocomplete in page
+        opener: $$('#autocomplete-standalone-popup'), // It will open standalone autocomplete popup
+        backOnSelect: true, //After selecting item, then go back to page
+        source: function (autocomplete, query, render) {
+            var results = [];
+            if (query.length === 0) {
+                render(results);
+                return;
+            }
+
+            // You can find matched items
+            for (var i = 0; i < countries.length; i++) {
+                if (countries[i].toLowerCase().indexOf(query.toLowerCase()) >= 0) results.push(countries[i]);
+            }
+
+            // Display the items by passing array with result items
+            render(results);
+        },
+
+        onChange: function (autocomplete, value) {
+            // Here add the item text value to item-after
+            $$('#autocomplete-standalone-popup').find('.item-after').text(value[0]);
+
+            // You can add item value to input value
+            $$('#autocomplete-standalone-popup').find('input').val(value[0]);
+        }
+    });
+
+    // Multiple Standalone
+    var autocompleteStandaloneMultiple = myApp.autocomplete ({
+        openIn: 'page', //Opens the Autocomplete in page
+        opener: $$('#autocomplete-standalone-multiple'), //link that opens autocomplete
+        multiple: true, //Allow multiple values
+        source: function (autocomplete, query, render) {
+            var results = [];
+            if (query.length === 0) {
+                render(results);
+                return;
+            }
+
+            // You can find matched items
+            for (var i = 0; i < countries.length; i++) {
+                if (countries[i].toLowerCase().indexOf(query.toLowerCase()) >= 0) results.push(countries[i]);
+            }
+
+            // Display the items by passing array with result items
+            render(results);
+        },
+
+        onChange: function (autocomplete, value) {
+            // Here add the item text value to item-after
+            $$('#autocomplete-standalone-multiple').find('.item-after').text(value.join(', '));
+
+            // You can add item value to input value
+            $$('#autocomplete-standalone-multiple').find('input').val(value.join(', '));
+        }
+    });
+</script>
+</body>
+</html>

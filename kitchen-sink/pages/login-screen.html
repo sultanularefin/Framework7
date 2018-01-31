@@ -102,30 +102,74 @@
                 var password = $('input#demo-password-1').val();
 
 
+
+
+
+
+
+                if (parametersanitation(password)=== null){
+                    app.dialog.alert('Message: <b> Please Enter valid password</b> ', function () {
+                        app.loginScreen.close();
+
+
+                    });
+                    return;
+                }
+                if (parametersanitation(email)=== null){
+                    app.dialog.alert('Message: <b> Please Enter valid email</b> ', function () {
+                        app.loginScreen.close();
+
+
+                    });
+
+
+                    return;
+                }
+
+
+
+
                 // var app = new Framework7();
 
                 var $$ = Dom7;
 
+                var mainView = app.views.main;
+                var homeView = app.views.home;
+
+
                 app.request.post('../authenticate.php', {email: email, password: password}, function (data) {
 
-                        console.log(data);
 
-                        // console.log(data.abc);
-                        // console.log(data["abc"]);
-                        // console.log(data[0]["abc"]);
-
-                        // $$('.login').html(data);
-                        // console.log('Load was performed');
-
-                        app.dialog.alert('<b>Login Success </b> <br>Your Email: ' + email + '<br>Password: ' + password, function () {
-                            app.loginScreen.close();
-
-                            // console.log(data.abc);
-                        });
+                        x = JSON.parse(data);
+                        console.log(x.abc);
 
 
+                        if (x.abc === "Successfully Registered") {
+
+                            app.dialog.alert('<b>Login Success </b> <br>Your Email: ' + email + '<br>Password: ' + password, function () {
+                                app.loginScreen.close();
 
 
+                                app.request.get('./pages/bookings-storage.html', function (data) {
+
+                                    // console.log(data);
+                                    $$('#mainView').html(data);
+                                    console.log('Load was performed');
+
+                                });
+
+
+                            });
+
+                        }
+
+                        else {
+                            app.dialog.alert('Message: <b>' + x.abc + '</b> ', function () {
+                                app.loginScreen.close();
+
+
+                            });
+                        }
 
 
                     },
@@ -135,30 +179,21 @@
                     }
                 );
 
-                // $.ajax({
-                //     type: 'POST',
-                //     // url: url,
-                //     url: "../test.php", //the page containing php script
-                //     data: {registration: "success", name: "xyz", email: "abc@gmail.com"},
-                //     // data: postedData,
-                //     dataType: 'json',
-                //     success: function (result) {
-                //     console.log("dfdf");
-                //
-
-                // }
-                // });
-
-
-                // $.ajax({
-                //
-                //     // type: "post", //request type,
-                //     // dataType: 'json',
-                //
-                //
-                // });
             }
         }
+    }
+
+    function parametersanitation(value) {
+        //console.log(!value);
+        //console.log(value == undefined);
+        //console.log(value == "");
+        //console.log(value.length == 0);
+        //console.log(isNaN(value));
+
+
+        if (!value || value == undefined || value == "" || value.length == 0 || isNaN(value))
+            return null;
+
     }
 
 
