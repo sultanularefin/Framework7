@@ -21,16 +21,19 @@
                     Please Login To our System
                 </p>
             </div>
-            <div class="list links-list">
-                <ul>
-                    <li>
-                        <a href="/login-screen-page/">As Separate Page</a>
-                    </li>
-                </ul>
-            </div>
+            <!--<div class="list links-list">-->
+            <!--<ul>-->
+            <!--<li>-->
+            <!--<a href="/login-screen-page/">As Separate Page</a>-->
+            <!--</li>-->
+            <!--</ul>-->
+            <!--</div>-->
             <div class="block">
                 <a href="#" class="button button-raised button-big button-fill login-screen-open"
-                   data-login-screen=".login-screen">As Overlay</a>
+                   data-login-screen=".login-screen">
+                    <!--As Overlay-->
+                    Login to Vehicle Booking site
+                </a>
             </div>
         </div>
         <div class="login-screen">
@@ -79,8 +82,14 @@
 
 
 </template>
+<!--<script src="js/app.js"></script>-->
+
 <!--<script src="js/jquery-3.2.1.js"></script>-->
 
+<!--<script src="../dist/js/framework7.min.js"></script>-->
+
+<!--<script src="js/routes.js"></script>-->
+<!--<script src="js/app.js"></script>-->
 <!--<script src="js/jquery-3.2.1.js"></script>-->
 <script>
 
@@ -94,54 +103,56 @@
     return {
         methods: {
             signIn: function () {
+
+
                 var $ = this.$;
                 var app = this.$app;
 
+
                 var email = $('input#demo-useremail-1').val();
+                //console.log(email);
                 // var username = $('input#demo-username-1').val();
                 var password = $('input#demo-password-1').val();
 
+                //console.log(password);
 
-
-
-
-
-
-                if (parametersanitation(password)=== null){
+                if (parametersanitation(password) === null) {
                     app.dialog.alert('Message: <b> Please Enter valid password</b> ', function () {
                         app.loginScreen.close();
 
-
                     });
                     return;
                 }
-                if (parametersanitation(email)=== null){
+                if (parametersanitation(email) === null) {
                     app.dialog.alert('Message: <b> Please Enter valid email</b> ', function () {
                         app.loginScreen.close();
 
-
                     });
-
 
                     return;
                 }
 
-
-
-
                 // var app = new Framework7();
+
 
                 var $$ = Dom7;
 
-                var mainView = app.views.main;
-                var homeView = app.views.home;
+
+                console.log(app);
+                console.log(mainView);
+
+
+                //var mainView = app.views.create('.view-main');
+
+                // var mainView = app.views.main;
+                //var homeView = app.views.home;
 
 
                 app.request.post('../authenticate.php', {email: email, password: password}, function (data) {
 
 
                         x = JSON.parse(data);
-                        console.log(x.abc);
+                        //console.log(x.abc);
 
 
                         if (x.abc === "Successfully Registered") {
@@ -150,13 +161,24 @@
                                 app.loginScreen.close();
 
 
-                                app.request.get('./pages/bookings-storage.html', function (data) {
+                                return app.router.navigate('/bookings-storage/');
 
-                                    // console.log(data);
-                                    $$('#mainView').html(data);
-                                    console.log('Load was performed');
+                                //
+                                //
+                                console.log("xx");
 
-                                });
+                                // app.router.navigate('/action-sheet/', {reloadCurrent: true, animate: false});
+
+
+                                // it converts the data to html but scripts (js doesnot work here, like this
+
+                                // app.request.get('./pages/bookings-storage.html', function (data) {
+                                //
+                                //     // console.log(data);
+                                //     $$('#mainView').html(data);
+                                //     console.log('Load was performed');
+                                //
+                                // });
 
 
                             });
@@ -184,14 +206,14 @@
     }
 
     function parametersanitation(value) {
-        //console.log(!value);
-        //console.log(value == undefined);
-        //console.log(value == "");
-        //console.log(value.length == 0);
-        //console.log(isNaN(value));
+        // console.log(!value);
+        // console.log(value == undefined);
+        // console.log(value == "");
+        // console.log(value.length == 0);
+        // console.log(isNaN(value));
 
 
-        if (!value || value == undefined || value == "" || value.length == 0 || isNaN(value))
+        if (!value || value == undefined || value == "" || value.length == 0)
             return null;
 
     }
