@@ -1,7 +1,7 @@
 <?php
 
 require_once './dbconfig.php';
-require_once './functions.php';
+//require_once './functions.php';
 
 
 //echo "autheticate page";
@@ -18,12 +18,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 //    print("email: ");
 //    print("password: ");
+//    exit();
 //    print($email);
 //    print($password);
 
     //echo "username and password: ",$uname,$pass;
 }
 
+//exit();
 
 
 if (($email == "") && ($password == "")) {
@@ -32,9 +34,11 @@ if (($email == "") && ($password == "")) {
 
     // some action goes here under php
 //    echo json_last_error('Please Fill every detail for login, i.e. email and password.');
-    echo json_encode(array("abc" => 'Please Fill every detail for login, i.e. email and password'));
+    echo json_encode(array("value" => 0, "message" => 'Please Fill every detail for login, i.e. email and password'));
 
 }
+
+//exit();
 
 //print("At line 50");
 
@@ -54,7 +58,7 @@ if ($connection->connect_error) {
 //    print("At line 49");
 
 
-    echo json_encode(array("abc" => 'Connection error with database, please try again '));
+    echo json_encode(array("value" => 0, "message" => 'Connection error with database, please try again '));
 //    die($connection->connect_error);
 
 
@@ -87,14 +91,22 @@ if (isset($email) && isset($password)) {
     $result = $connection->query($query);
 
 
+//    print(isset($result));
+
+//    exit();
+
+
     if (!$result) {
 
-//        echo json_error('Email not found please enter valid email.');
-        echo json_encode(array("abc" => 'Email not found please enter valid email.'));
+//        print("dsfd");
+
+        echo json_encode(array("value" => 0, "message" => 'Query with email doesn\'t give any result (will be changed) .'));
 //        die($connection->error);
     } elseif (0 == ($result->num_rows)) {
 
-        echo json_encode(array("abc" => 'Email not found please enter valid email.'));
+//        print("trter");
+
+        echo json_encode(array("value" => 0, "message" => 'No results found for this Email, please enter valid email.'));
 
     } else {
 
@@ -105,7 +117,8 @@ if (isset($email) && isset($password)) {
 //            $row = $result->fetch_array(MYSQLI_ASSOC);
 
 
-        $result->close();
+//        $result->close();
+
 
 //        print($row[0]);
 //        exit();
@@ -129,18 +142,24 @@ if (isset($email) && isset($password)) {
 //            header('Location: ./index.php');
             //echo "<p><a href='user_post.php'>Click here to continue</a></p>";
         } else {
-            echo json_encode(array("abc" => 'Password not correct.'));
+            echo json_encode(array("value" => 0, "message" => 'Password not correct.'));
         }
+
+//        print('default');
+
+//        $connection->close();
 
 
     }
-}
+    $connection->close();
 
-$connection->close();
+}
+//
+//$connection->close();
 
 if ($login_result == "success") {
     // some action goes here under php
-    echo json_encode(array("abc" => 'Successfully Registered'));
+    echo json_encode(array("value" => 1, "message" => 'Successfully Registered'));
 }
 
 

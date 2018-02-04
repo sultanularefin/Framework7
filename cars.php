@@ -71,32 +71,32 @@ if (!$result) {
 //        print($row[0]);
 //        exit();
     $id = '';
-    $value = '';
+    $name = '';
     $index = 1;
 //    $oneLocation->id=0;
 //    $oneLocation->value='';
 
-    class location
+    class car
     {
         public $id;
-        public $value;
+        public $name;
     }
 
-    $arrayOfLocations = array();
+    $arrayOfCars = array();
 
     while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
 
 
         $id = ($row['id']);
 
-        $value = ($row['value']);
+        $name = ($row['name']);
 
 
-        $arrayItem = new location();
+        $arrayItem = new car();
 
-        $arrayItem->value = $value;
+        $arrayItem->name = $name;
         $arrayItem->id = $id;
-        $arrayOfLocations[] = $arrayItem;
+        $arrayOfCars[] = $arrayItem;
 
         $index = $index + 1;
 
@@ -112,8 +112,11 @@ if (!$result) {
 
 
 
-    $myJSON = json_encode($arrayOfLocations);
-    //var_dump($arrayOfLocations);
+    $myJSON = json_encode($arrayOfCars);
+
+//    print($myJSON);
+//    exit();
+//    var_dump($arrayOfLocations);
 
 
     //exit();

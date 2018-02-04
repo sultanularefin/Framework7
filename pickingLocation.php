@@ -52,11 +52,11 @@ $result = $conn->query($query);
 if (!$result) {
 
 //        echo json_error('Email not found please enter valid email.');
-    echo json_encode(array("value" => 0, "message" =>'Empty result returned from functions'));
+    echo json_encode(array("value" => 0, "message" => 'Empty result returned from functions'));
 //        die($connection->error);
 } elseif (0 == ($result->num_rows)) {
 
-    echo json_encode(array("value" => 0, "message" =>'0 results returned from functions.'));
+    echo json_encode(array("value" => 0, "message" => '0 results returned from functions.'));
 
 } else {
     $num = $result->num_rows;
@@ -71,32 +71,38 @@ if (!$result) {
 //        print($row[0]);
 //        exit();
     $id = '';
-    $value = '';
+    $pickUpLoc = '';
     $index = 1;
 //    $oneLocation->id=0;
 //    $oneLocation->value='';
 
-    class location
+    class pickUpLocation
     {
         public $id;
-        public $value;
+        public $pickUpLoc;
     }
 
-    $arrayOfLocations = array();
+    $arrayOfpickUpLocations = array();
 
     while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
 
 
         $id = ($row['id']);
 
-        $value = ($row['value']);
+        $pickUpLoc = ($row['pickUpLoc']);
+
+        // print($id);
+        // print($pickUpLoc);
+
+        // exit();
 
 
-        $arrayItem = new location();
+        $arrayItem = new pickUpLocation();
 
-        $arrayItem->value = $value;
+        $arrayItem->pickUpLoc = $pickUpLoc;
         $arrayItem->id = $id;
-        $arrayOfLocations[] = $arrayItem;
+        $arrayOfpickUpLocations[] = $arrayItem;
+
 
         $index = $index + 1;
 
@@ -111,9 +117,12 @@ if (!$result) {
     }
 
 
+    $myJSON = json_encode($arrayOfpickUpLocations);
 
-    $myJSON = json_encode($arrayOfLocations);
-    //var_dump($arrayOfLocations);
+//    print($myJSON);
+//    exit();
+//    exit();
+//    var_dump($arrayOfLocations);
 
 
     //exit();
@@ -123,7 +132,7 @@ if (!$result) {
 
 //    echo json_encode($named_array);
 
-    echo json_encode(array("value" => 1, "message" =>$myJSON));
+    echo json_encode(array("value" => 1, "message" => $myJSON));
 //    print($myJSON);
 }
 

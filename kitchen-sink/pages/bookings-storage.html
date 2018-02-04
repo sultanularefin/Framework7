@@ -1,4 +1,5 @@
 <!--<template>-->
+<div class="view view-main view-init ios-edges" id="mainView" data-url="/">
     <div class="page">
         <div class="navbar">
             <div class="navbar-inner sliding">
@@ -14,6 +15,8 @@
                 </div>
             </div>
         </div>
+
+
         <div class="page-content">
             <div class="block">
                 <!--<p>With forms storage it is easy to store and parse form data, especially on Ajax loaded pages. All you need to make it work is to add "form-store-data" class to your &lt;form&gt; and Framework7 will store form data with every input change. And the most awesome part is that when you load this page again Framework7 will parse this data and fill all form fields automatically!</p>-->
@@ -22,301 +25,323 @@
             </div>
 
 
-            <form class="list form-store-data" id="demo-form">
+            <form class="list form-store-data" id="my-form">
+
+
+                <!--<div class="list no-hairlines-md">-->
+                <!--&lt;!&ndash;<div class="block-header">Dropdown With All Values</div>&ndash;&gt;-->
+                <!--<ul>-->
+                <!--<li class="item-content item-input">-->
+                <!--<div class="item-inner">-->
+                <!--<div class="item-title item-label">Destination</div>-->
+                <!--<div class="item-input-wrap">-->
+                <!--&lt;!&ndash;@click="loadDestination"&ndash;&gt;-->
+                <!--<input id="Destination_autocomplete-dropdown-all" type="text" placeholder="Select your destination from here.">-->
+                <!--&lt;!&ndash;onclick="loadDestination()"&ndash;&gt;-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</li>-->
+
+                <!--<li class="item-content item-input">-->
+                <!--<div class="item-inner">-->
+                <!--<div class="item-title item-label">Car Number</div>-->
+                <!--<div class="item-input-wrap">-->
+                <!--&lt;!&ndash;@click="loadDestination"&ndash;&gt;-->
+                <!--<input id="Car_autocomplete-dropdown-all" type="text" placeholder="Car Number.">-->
+                <!--&lt;!&ndash;onclick="loadDestination()"&ndash;&gt;-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</li>-->
+                <!--</ul>-->
+
+
+                <!--</div>-->
 
                 <div class="block-header"><b>Vehicle Booking Form</b></div>
-
-                <div class="list no-hairlines-md">
-                    <!--<div class="block-header">Dropdown With All Values</div>-->
-                    <ul>
-                        <li class="item-content item-input">
+                <!--<form class="list" id="my-form">-->
+                <ul>
+                    <li>
+                        <div class="item-content item-input">
                             <div class="item-inner">
                                 <div class="item-title item-label">Destination</div>
                                 <div class="item-input-wrap">
-                                    <!--@click="loadDestination"-->
-                                    <input id="autocomplete-dropdown-all" type="text" onclick="loadDestination()" placeholder="Fruit">
+                                    <input name="destination_name" id="Destination_autocomplete-dropdown-all" type="text"
+                                           placeholder="Select your destination from here." required validate>
+                                    <span class="input-clear-button"></span>
+                                    <!--<div class="item-input-info">Default "required" validation</div>-->
+                                    <!--<input type="text" name="name" placeholder="Your name">-->
                                 </div>
                             </div>
-                        </li>
-                    </ul>
-                </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Car Number</div>
+                                <div class="item-input-wrap">
+                                    <input name="car_name"  id="Car_autocomplete-dropdown-all" type="text" placeholder="Car Number."
+                                           required validate>
+                                    <span class="input-clear-button"></span>
+                                    <!--<div class="item-input-info">Default "required" validation</div>-->
+                                    <!--<input type="text" name="name" placeholder="Your name">-->
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Pick Up Form</div>
+                                <div class="item-input-wrap">
+                                    <input name="pickUpLocationName" id="PickUPLocation_autocomplete-dropdown-all" type="text"
+                                           placeholder="Specify pick Up Location."
+                                           required validate>
+                                    <span class="input-clear-button"></span>
+                                    <!--<div class="item-input-info">Default "required" validation</div>-->
+                                    <!--<select name="gender" placeholder="Please choose...">-->
+                                    <!--<option value="Male">Male</option>-->
+                                    <!--<option value="Female">Female</option>-->
+                                    <!--</select>-->
+                                    <!--<input type="text" name="name" placeholder="Your name">-->
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <!--<div class="item-title item-label">E-mail</div>-->
+                                <div class="item-title item-label">Return Time</div>
+                                <div class="item-input-wrap">
+                                    <!--<input name="birthday" type="date" value="2014-04-30"-->
+                                    <!--placeholder="Please choose...">-->
+                                    <!--</div>-->
+                                    <!--<div class="item-input-wrap">-->
+                                    <input name="returnTime" type="date" value="2014-04-30" placeholder="Please choose..."
+                                           required validate>
+                                    <span class="input-clear-button"></span>
+                                    <!--<div class="item-input-info">Default "required" validation</div>-->
+                                    <!--<input type="email" name="email" placeholder="E-mail">-->
+                                </div>
+                            </div>
+                        </div>
+                    </li>
 
-                <ul>
-                    <li class="item-content item-input">
-                        <div class="item-inner">
-                            <div class="item-title item-label">Name</div>
-                            <div class="item-input-wrap">
-                                <input name="name" type="text" placeholder="Your name">
-                                <span class="input-clear-button"></span>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="item-content item-input">
-                        <div class="item-inner">
-                            <div class="item-title item-label">Password</div>
-                            <div class="item-input-wrap">
-                                <input name="password" type="password" placeholder="Your password">
-                                <span class="input-clear-button"></span>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="item-content item-input">
-                        <div class="item-inner">
-                            <div class="item-title item-label">E-mail</div>
-                            <div class="item-input-wrap">
-                                <input name="email" type="email" placeholder="Your e-mail">
-                                <span class="input-clear-button"></span>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="item-content item-input">
-                        <div class="item-inner">
-                            <div class="item-title item-label">URL</div>
-                            <div class="item-input-wrap">
-                                <input name="url" type="url" placeholder="URL">
-                                <span class="input-clear-button"></span>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="item-content item-input">
-                        <div class="item-inner">
-                            <div class="item-title item-label">Phone</div>
-                            <div class="item-input-wrap">
-                                <input name="phone" type="tel" placeholder="Your phone number">
-                                <span class="input-clear-button"></span>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="item-content item-input">
-                        <div class="item-inner">
-                            <div class="item-title item-label">Gender</div>
-                            <div class="item-input-wrap">
-                                <select name="gender" placeholder="Please choose...">
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                </select>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="item-content item-input">
-                        <div class="item-inner">
-                            <div class="item-title item-label">Birthday</div>
-                            <div class="item-input-wrap">
-                                <input name="birthday" type="date" value="2014-04-30" placeholder="Please choose...">
-                            </div>
-                        </div>
-                    </li>
-                    <li class="item-content item-input">
-                        <div class="item-inner">
-                            <div class="item-title item-label">Date time</div>
-                            <div class="item-input-wrap">
-                                <input name="date" type="datetime-local" placeholder="Please choose...">
-                            </div>
-                        </div>
-                    </li>
-                    <li class="item-content item-input">
-                        <div class="item-inner">
-                            <div class="item-title item-label">Range</div>
-                            <div class="item-input-wrap">
-                                <div class="range-slider range-slider-init" data-label="true">
-                                    <input name="range" type="range" value="50" min="0" max="100" step="1">
+
+
+
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Number of Passengers</div>
+                                <div class="item-input-wrap">
+                                    <!--<select name="gender">-->
+                                    <!--<option value="male" selected>Male</option>-->
+                                    <!--<option value="female">Female</option>-->
+                                    <!--</select>-->
+
+                                    <!--<input type="text" placeholder="Your name" required validate>-->
+
+
+                                    <input name="number_of_passanger" id="passangers" type="number" required validate
+                                           pattern="[0-9]*" data-error-message="Only numbers please!"
+                                           placeholder="Enter number of passengers.">
+                                    <span class="input-clear-button"></span>
+                                    <!--<div class="item-input-info">Default "required" validation</div>-->
                                 </div>
                             </div>
                         </div>
                     </li>
-                    <li class="item-content item-input">
-                        <div class="item-inner">
-                            <div class="item-title item-label">About you</div>
-                            <div class="item-input-wrap">
-                                <textarea name="bio" class="resizable" placeholder="Bio"></textarea>
+
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <!--<div class="item-title item-label">E-mail</div>-->
+                                <div class="item-title item-label">Test</div>
+                                <div class="item-input-wrap">
+                                    <!--<input name="birthday" type="date" value="2014-04-30"-->
+                                    <!--placeholder="Please choose...">-->
+                                    <!--</div>-->
+                                    <!--<div class="item-input-wrap">-->
+                                    <input name="testTextValueAjax" type="text" id="testajax" placeholder="Please choose for test..."
+                                           required validate>
+                                    <span class="input-clear-button"></span>
+                                    <!--<div class="item-input-info">Default "required" validation</div>-->
+                                    <!--<input type="email" name="email" placeholder="E-mail">-->
+                                </div>
                             </div>
                         </div>
                     </li>
+
+
                 </ul>
+
+                <input type="submit" class="button" onclick="InsertBooking()" value="Book your ride">
+
             </form>
+
+
         </div>
     </div>
+</div>
 <!--</template>-->
 <!--comment otherwise will not load page.-->
+
+<script src="../dist/js/framework7.min.js"></script>
+
+<script src="js/routes.js"></script>
+<script src="js/app.js"></script>
+<script src="js/jquery-3.2.1.js"></script>
+
 <script>
 
 
-    var $ = this.$;
-    var app = this.$app;
+    function InsertBooking() {
 
+        console.log("GGG");
 
-    var $$ = Dom7;
-    $$(document).on('page:init', function (e) {
-
-        console.log('df');
-
-
-        var page = e.detail.page;
-
-        // Find script tags
-        page.container.getElements('script').each(function (el) {
-
-            // External js or inline?
-            if (el.get('src')) {
-
-                // Fetch external js
-                WhateverFramework.load(el.get('src'));
-
-            } else {
-
-                // Evaluate js
-                eval(el.get('text'));
-            }
-        });
-    });
-
-
-     // Option 1. Using one 'page:init' handler for all pages
-     $$(document).on('page:init', function (e) {
-         console.log("UUUU");
-         // Do something here when page loaded and initialized
-     })
-
-
-     // Option 1. Using one 'page:init' handler for all pages
-     $$(document).on('page:mounted', function (e) {
-
-         console.log("UUUU");
-         // Do something here when page loaded and initialized
-     })
-
-     $$(document).on('page:reinit', function (e) {
-
-         console.log("UUUU");
-         // Do something here when page loaded and initialized
-     })
-
-
-     $$(document).on('page:beforein', function (e) {
-
-         console.log("UUUU");
-         // Do something here when page loaded and initialized
-     })
-
-
-     $$(document).on('page:afterin', function (e) {
-
-         console.log("UUUU");
-         // Do something here when page loaded and initialized
-     })
-
-     $$(document).on('page:beforeout', function (e) {
-
-         console.log("UUUU");
-         // Do something here when page loaded and initialized
-     })
-
-
-     $$(document).on('page:afterout', function (e) {
-
-         console.log("UUUU");
-         // Do something here when page loaded and initialized
-     })
-
-
-     $$(document).on('page:beforeremove', function (e) {
-
-         console.log("UUUU");
-         // Do something here when page loaded and initialized
-     })
-
-     var view = app.views.create('.view-main', {
-         on: {
-             pageInit: function () {
-                 console.log('page init')
-             }
-         }
-     })
-
-
-     var view = app.views.create('.view-main', {
-         on: {
-             pageInit: function () {
-                 console.log('page init')
-             }
-         }
-     })
-
-
-     $(document).ready(function () {
-         console.log("ready at bookings-storage.html!");
-     });
-
-
-    function loadDestination() {
-        alert("xx");
-
-        console.log("PP");
-        return;
-        var $ = this.$;
-        var app = this.$app;
-        var username = $('input#demo-username-1').val();
-        var password = $('input#demo-password-1').val();
-        app.dialog.alert('Username: ' + username + '<br>Password: ' + password, function () {
-            app.loginScreen.close();
-        })
-
+        app.dialog.alert('Hello World!');
 
     }
 
-     // noinspection JSAnnotator
-     return {
-         methods: {
-             loadDestination: function () {
-                 alert("xx");
 
-                 console.log("PP");
-                 return;
-                 var $ = this.$;
-                 var app = this.$app;
-                 var username = $('input#demo-username-1').val();
-                 var password = $('input#demo-password-1').val();
-                 app.dialog.alert('Username: ' + username + '<br>Password: ' + password, function () {
-                     app.loginScreen.close();
-                 })
-             }
-         }
-     }
+    var $ = this.$;
+    var $$ = Dom7;
 
 
-     var $ = this.$;
-     var app = this.$app;
+    var $ = this.$;
 
-     // var app = new Framework7();
-
-     var $$ = Dom7;
-
-
-     // Fruits data demo array
-     var fruits = ('Apple Apricot Avocado Banana Melon Orange Peach Pear Pineapple').split(' ');
-
-     // Option 2. Using live 'page:init' event handlers for each page
-     $$(document).on('page:init', '.page[data-name="about"]', function (e) {
-
-         console.log('xxxwwwtttppp');
-         // Do something here when page with data-name="about" attribute loaded and initialized
-     })
+    // no need requres when accessing html pages in ./pages section.
+    // var app = this.$app;
+    //var app = new Framework7();
 
 
-     var autocompleteDropdownAll = app.autocomplete.create({
-         inputEl: '#autocomplete-dropdown-all',
-         openIn: 'dropdown',
-         source: function (query, render) {
-             // console.log("xx");
-             var results = [];
-             // Find matched items
-             for (var i = 0; i < fruits.length; i++) {
-                 if (fruits[i].toLowerCase().indexOf(query.toLowerCase()) >= 0) results.push(fruits[i]);
-             }
-             // Render items by passing array with result items
-             render(results);
-         }
-     });
+    var $$ = Dom7;
+
+    console.log("$$ ");
+
+    console.log($$);
+
+
+    var app = new Framework7();
+
+
+    var app = new Framework7({
+        methods: {
+            InsertBooking: function () {
+                app.dialog.alert('Hello World!');
+            }
+
+        }
+    });
+
+    var $$ = Dom7;
+
+    $$('.convert-form-to-data').on('click', function () {
+        var formData = app.form.convertToData('#my-form');
+        alert(JSON.stringify(formData));
+    });
+
+    var mainView = app.views.create('.view-main');
+
+
+    app.on('pageInit', function (page) {
+
+        console.log("app.on('pageInit', function (page)");
+
+    });
+
+
+    // console.log($$);
+
+
+    // Option 1. Using one 'page:init' handler for all pages
+    $$(document).on('page:init', function (e) {
+        console.log("page:init bookings-storage.html");
+        // Do something here when page loaded and initialized
+    })
+
+
+    // Option 1. Using one 'page:init' handler for all pages
+    $$(document).on('page:mounted', function (e) {
+
+        console.log("page:mounted bookings-storage.html");
+        // Do something here when page loaded and initialized
+    })
+
+    $$(document).on('page:reinit', function (e) {
+
+        console.log("page:reinit bookings-storage.html");
+        // Do something here when page loaded and initialized
+    })
+
+
+    $$(document).on('page:beforein', function (e) {
+
+        console.log("page:beforein bookings-storage.html");
+        // Do something here when page loaded and initialized
+    })
+
+
+    $$(document).on('page:afterin', function (e) {
+
+        console.log("page:afterin bookings-storage.html");
+        // Do something here when page loaded and initialized
+    })
+
+    $$(document).on('page:beforeout', function (e) {
+
+        console.log("page:beforeout bookings-storage.html");
+        // Do something here when page loaded and initialized
+    })
+
+
+    $$(document).on('page:afterout', function (e) {
+
+        console.log("page:afterout bookings-storage.html");
+        // Do something here when page loaded and initialized
+    })
+
+
+    $$(document).on('page:beforeremove', function (e) {
+
+        console.log("page:beforeremove bookings-storage.html");
+        // Do something here when page loaded and initialized
+    })
+
+    var view = app.views.create('.view-main', {
+        on: {
+            pageInit: function () {
+                console.log('page init')
+            }
+        }
+    })
+
+
+    var view = app.views.create('.view-main', {
+        on: {
+            pageInit: function () {
+                console.log('page init')
+            }
+        }
+    })
+
+
+    $(document).ready(function () {
+        console.log("ready at bookings-storage.html!");
+    });
+
+
+    var $ = this.$;
+
+
+    ;
+
+    var $$ = Dom7;
+
+
+    // Fruits data demo array
+    var fruits = ('Apple Apricot Avocado Banana Melon Orange Peach Pear Pineapple').split(' ');
 
 
     // noinspection JSAnnotator

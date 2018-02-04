@@ -16,8 +16,8 @@ var app = new Framework7({
     data: function () {
         return {
             user: {
-                firstName: 'John',
-                lastName: 'Doe',
+                userEmail: 'John',
+                password: 'Doe',
             },
         };
     },
