@@ -131,6 +131,7 @@ if (isset($email) && isset($password)) {
             $_SESSION['username'] = $email_temp;
             $_SESSION['password'] = $password_temp;
             $_SESSION['id'] = $row[0];
+            $userId = $row[0];;
             $_SESSION['username'] = $row[3];
             $_SESSION['is_loggedin'] = TRUE;
             $login_result = "success";
@@ -159,7 +160,7 @@ if (isset($email) && isset($password)) {
 
 if ($login_result == "success") {
     // some action goes here under php
-    echo json_encode(array("value" => 1, "message" => 'Successfully Registered'));
+    echo json_encode(array("value" => $userId, "message" => 'Successfully Registered'));
 }
 
 

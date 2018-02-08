@@ -154,13 +154,6 @@
                 //var homeView = app.views.home;
 
 
-
-
-
-
-
-
-
                 app.request.post('../authenticate.php', {email: email, password: password}, function (data) {
 
 
@@ -171,7 +164,7 @@
                         // return;
 
 
-                        if (x.value === 1) {
+                        if (x.value !== 0) {
 
                             app.dialog.alert('<b>Login Success </b> <br>Your Email: ' + email + '<br>Password: ' + password, function () {
                                 app.loginScreen.close();
@@ -184,6 +177,7 @@
 
                                 app.data.user.userEmail = successEmail;
                                 app.data.user.password = successPassword;
+                                app.data.user.userid=x.value
 
                                 return app.router.navigate('/bookings-storage/');
 

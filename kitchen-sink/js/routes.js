@@ -11,6 +11,13 @@ var routes = [
         url: './pages/about.html',
         name: 'about',
     },
+    {
+        path:'/book-vehicle/',
+        url:'./pages/book-vehicle.html',
+        name:'book-vehicle',
+
+    },
+
     // Right Panel pages
     {
         path: '/panel-right-1/',
@@ -119,6 +126,11 @@ var routes = [
     {
         path: '/data-table/',
         componentUrl: './pages/data-table.html',
+    },
+    {
+        path:'/yourbooking/',
+        componentUrl:'./pages/yourbooking.html',
+
     },
     {
         path: '/dialog/',

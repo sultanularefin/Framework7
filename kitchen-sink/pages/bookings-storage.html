@@ -21,45 +21,46 @@
             <div class="block">
                 <!--<p>With forms storage it is easy to store and parse form data, especially on Ajax loaded pages. All you need to make it work is to add "form-store-data" class to your &lt;form&gt; and Framework7 will store form data with every input change. And the most awesome part is that when you load this page again Framework7 will parse this data and fill all form fields automatically!</p>-->
                 <!--<p>Just try to fill the form below and then go to any other page, or even you may close this site, and when you return here form fields will have kept your data.</p>-->
+                <h1 id="userinfo" style="color: crimson"></h1>
                 <p>You are at bookings storage page</p>
+
+
             </div>
 
 
-            <form class="list form-store-data" id="my-form">
+            <!--<form class="list form-store-data" id="my-form">-->
+
+            <form action="index.html" class="form-ajax-submit" id="my-form" method="post">
 
 
-                <!--<div class="list no-hairlines-md">-->
-                <!--&lt;!&ndash;<div class="block-header">Dropdown With All Values</div>&ndash;&gt;-->
-                <!--<ul>-->
-                <!--<li class="item-content item-input">-->
-                <!--<div class="item-inner">-->
-                <!--<div class="item-title item-label">Destination</div>-->
-                <!--<div class="item-input-wrap">-->
-                <!--&lt;!&ndash;@click="loadDestination"&ndash;&gt;-->
-                <!--<input id="Destination_autocomplete-dropdown-all" type="text" placeholder="Select your destination from here.">-->
-                <!--&lt;!&ndash;onclick="loadDestination()"&ndash;&gt;-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--</li>-->
-
-                <!--<li class="item-content item-input">-->
-                <!--<div class="item-inner">-->
-                <!--<div class="item-title item-label">Car Number</div>-->
-                <!--<div class="item-input-wrap">-->
-                <!--&lt;!&ndash;@click="loadDestination"&ndash;&gt;-->
-                <!--<input id="Car_autocomplete-dropdown-all" type="text" placeholder="Car Number.">-->
-                <!--&lt;!&ndash;onclick="loadDestination()"&ndash;&gt;-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--</li>-->
-                <!--</ul>-->
 
 
-                <!--</div>-->
 
                 <div class="block-header"><b>Vehicle Booking Form</b></div>
                 <!--<form class="list" id="my-form">-->
                 <ul>
+
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <!--<div class="item-title item-label">E-mail</div>-->
+                                <div class="item-title item-label">Test</div>
+                                <div class="item-input-wrap">
+                                    <!--<input name="birthday" type="date" value="2014-04-30"-->
+                                    <!--placeholder="Please choose...">-->
+                                    <!--</div>-->
+                                    <!--<div class="item-input-wrap">-->
+                                    <input name="testTextValueAjax" type="text" id="testajax" placeholder="Please choose for test..."
+                                           required validate>
+                                    <span class="input-clear-button"></span>
+                                    <!--<div class="item-input-info">Default "required" validation</div>-->
+                                    <!--<input type="email" name="email" placeholder="E-mail">-->
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+
                     <li>
                         <div class="item-content item-input">
                             <div class="item-inner">
@@ -117,7 +118,7 @@
                                     <!--placeholder="Please choose...">-->
                                     <!--</div>-->
                                     <!--<div class="item-input-wrap">-->
-                                    <input name="returnTime" type="date" value="2014-04-30" placeholder="Please choose..."
+                                    <input name="returnTime" type="date" value="2014-04-30" id="returnDate" placeholder="Please choose..."
                                            required validate>
                                     <span class="input-clear-button"></span>
                                     <!--<div class="item-input-info">Default "required" validation</div>-->
@@ -153,25 +154,7 @@
                         </div>
                     </li>
 
-                    <li>
-                        <div class="item-content item-input">
-                            <div class="item-inner">
-                                <!--<div class="item-title item-label">E-mail</div>-->
-                                <div class="item-title item-label">Test</div>
-                                <div class="item-input-wrap">
-                                    <!--<input name="birthday" type="date" value="2014-04-30"-->
-                                    <!--placeholder="Please choose...">-->
-                                    <!--</div>-->
-                                    <!--<div class="item-input-wrap">-->
-                                    <input name="testTextValueAjax" type="text" id="testajax" placeholder="Please choose for test..."
-                                           required validate>
-                                    <span class="input-clear-button"></span>
-                                    <!--<div class="item-input-info">Default "required" validation</div>-->
-                                    <!--<input type="email" name="email" placeholder="E-mail">-->
-                                </div>
-                            </div>
-                        </div>
-                    </li>
+
 
 
                 </ul>
@@ -195,156 +178,6 @@
 
 <script>
 
-
-    function InsertBooking() {
-
-        console.log("GGG");
-
-        app.dialog.alert('Hello World!');
-
-    }
-
-
-    var $ = this.$;
-    var $$ = Dom7;
-
-
-    var $ = this.$;
-
-    // no need requres when accessing html pages in ./pages section.
-    // var app = this.$app;
-    //var app = new Framework7();
-
-
-    var $$ = Dom7;
-
-    console.log("$$ ");
-
-    console.log($$);
-
-
-    var app = new Framework7();
-
-
-    var app = new Framework7({
-        methods: {
-            InsertBooking: function () {
-                app.dialog.alert('Hello World!');
-            }
-
-        }
-    });
-
-    var $$ = Dom7;
-
-    $$('.convert-form-to-data').on('click', function () {
-        var formData = app.form.convertToData('#my-form');
-        alert(JSON.stringify(formData));
-    });
-
-    var mainView = app.views.create('.view-main');
-
-
-    app.on('pageInit', function (page) {
-
-        console.log("app.on('pageInit', function (page)");
-
-    });
-
-
-    // console.log($$);
-
-
-    // Option 1. Using one 'page:init' handler for all pages
-    $$(document).on('page:init', function (e) {
-        console.log("page:init bookings-storage.html");
-        // Do something here when page loaded and initialized
-    })
-
-
-    // Option 1. Using one 'page:init' handler for all pages
-    $$(document).on('page:mounted', function (e) {
-
-        console.log("page:mounted bookings-storage.html");
-        // Do something here when page loaded and initialized
-    })
-
-    $$(document).on('page:reinit', function (e) {
-
-        console.log("page:reinit bookings-storage.html");
-        // Do something here when page loaded and initialized
-    })
-
-
-    $$(document).on('page:beforein', function (e) {
-
-        console.log("page:beforein bookings-storage.html");
-        // Do something here when page loaded and initialized
-    })
-
-
-    $$(document).on('page:afterin', function (e) {
-
-        console.log("page:afterin bookings-storage.html");
-        // Do something here when page loaded and initialized
-    })
-
-    $$(document).on('page:beforeout', function (e) {
-
-        console.log("page:beforeout bookings-storage.html");
-        // Do something here when page loaded and initialized
-    })
-
-
-    $$(document).on('page:afterout', function (e) {
-
-        console.log("page:afterout bookings-storage.html");
-        // Do something here when page loaded and initialized
-    })
-
-
-    $$(document).on('page:beforeremove', function (e) {
-
-        console.log("page:beforeremove bookings-storage.html");
-        // Do something here when page loaded and initialized
-    })
-
-    var view = app.views.create('.view-main', {
-        on: {
-            pageInit: function () {
-                console.log('page init')
-            }
-        }
-    })
-
-
-    var view = app.views.create('.view-main', {
-        on: {
-            pageInit: function () {
-                console.log('page init')
-            }
-        }
-    })
-
-
-    $(document).ready(function () {
-        console.log("ready at bookings-storage.html!");
-    });
-
-
-    var $ = this.$;
-
-
-    ;
-
-    var $$ = Dom7;
-
-
-    // Fruits data demo array
-    var fruits = ('Apple Apricot Avocado Banana Melon Orange Peach Pear Pineapple').split(' ');
-
-
-    // noinspection JSAnnotator
 
 
 </script>

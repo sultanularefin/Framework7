@@ -18,6 +18,7 @@ var app = new Framework7({
             user: {
                 userEmail: 'John',
                 password: 'Doe',
+                userid:0,
             },
         };
     },
@@ -33,10 +34,10 @@ var app = new Framework7({
     routes: routes,
     on: {
         init: function () {
-            // console.log('App initialized');
+             // console.log('App initialized');
         },
         pageInit: function () {
-            // console.log('Page initialized');
+             // console.log('Page initialized');
         },
     },
     vi: {
