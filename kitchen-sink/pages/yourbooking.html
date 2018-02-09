@@ -16,11 +16,11 @@
 
             <div class="block-title">Your Bookings</div>
             <div class="data-table data-table-init card">
-                <div class="card-header">
-                    <div class="data-table-links"><a class="link">Add</a><a class="link">Remove</a></div>
-                    <div class="data-table-actions"><a class="link icon-only">{{sortIcon}}</a><a class="link icon-only">{{moreIcon}}</a>
-                    </div>
-                </div>
+                <!--<div class="card-header">-->
+                <!--<div class="data-table-links"><a class="link">Add</a><a class="link">Remove</a></div>-->
+                <!--<div class="data-table-actions"><a class="link icon-only">{{sortIcon}}</a><a class="link icon-only">{{moreIcon}}</a>-->
+                <!--</div>-->
+                <!--</div>-->
                 <div class="card-content">
                     <table>
                         <thead>
@@ -92,6 +92,8 @@
 
         var ios = this.theme.ios;
 
+        // console.log(ios);
+
         var commentsIcon = ios ? '<i class="icon f7-icons">chat_fill</i>' : '<i class="icon material-icons">message</i>';
         var sortIconj = ios ? '<i class="icon f7-icons">sort</i>' : '<i class="icon material-icons">sort</i>';
         var moreIcon = ios ? '<i class="icon f7-icons">more_vertical_round</i>' : '<i class="icon material-icons">more_vert</i>';
@@ -117,20 +119,27 @@
 
         // console.log("XXXXXXXX");
 
-        // if (app.data.user.userEmail === 'John') {
-        //
-        //
-        //     // console.log("XXXXXXXX");
-        //     app.dialog.alert('<b style="color:crimson">Not authorised to be in this page, please login with proper credentials</b>', function () {
-        //         app.currentPage.
-        //         // app.loginScreen.close();
-        //         return app.router.navigate('/home/', {reloadCurrent: false});
-        //     });
-        //     // return app.router.navigate('../kitchen-sink/index/');
-        //
-        //     // return
-        //
-        // };
+        if (app.data.user.userEmail === 'John') {
+
+
+            // console.log("XXXXXXXX");
+            app.dialog.alert('<b style="color:crimson">Not authorised to be in this page,' +
+                ' please login with proper credentials</b>',
+                function () {
+
+                    // app.loginScreen.close();
+
+                    // return
+                    return app.views.main.router.navigate('/', history = true);
+                    // app.views.main.router.navigate('/home/', history = true);
+                    // return app.router.navigate('/home/', {reloadCurrent: false});
+                });
+            // return app.router.navigate('../kitchen-sink/index/');
+
+            // return
+
+        }
+        ;
 
         var table = "bookings";
         // var userid = app.data.user.userid;
@@ -138,20 +147,29 @@
         // var userid = 1;
 
 
+        var userid = parseInt(app.data.user.userid) === 0 ? 1 : app.data.user.userid;
+
+        // console.log(userid);
+
         app.request.post('../showbooking.php', {
-                user: 1,
+                user: userid,
                 table: table,
             }, function (data) {
 
 
-                console.log(data);
+                // console.log(data);
 
 
                 x = JSON.parse(data);
 
+
                 var bookingsData = x.message;
 
+
                 bookingsData = JSON.parse(bookingsData);
+
+
+                //console.log(bookingsData);
 
                 var bookingdatahtml = "";
 
@@ -166,13 +184,13 @@
 
                         + '<td class="numeric-cell">' + onedata.PickUpLocation + '</td>'
                         + '<td class="numeric-cell">' + onedata.PassengerNumber + '</td>'
-                        + '<td class="numeric-cell">' + onedata.CarId + '</td>'
+                        + '<td class="numeric-cell">' + onedata.CarName + '</td>'
                         + '<td class="numeric-cell">' + onedata.ReturnTime + '</td>'
+                        + '<td class="actions-cell"><a class="link icon-only" onclick="EditThis(' + onedata.bookings_id + ')" href="javascript:void(0)">' + composeIcon + '</a>'
+                        + '<a class="link icon-only" onclick="DeleteThis(' + onedata.bookings_id + ')" href="javascript:void(0)">' + trashIcon + '</a>'
+                        + '</td >'
 
 
-                        // + '<td class="actions-cell"><a class="link icon-only" href="EditThis()">' + composeIcon + '</a>'
-                        // + '<a class="link icon-only" href="deleteThis(' + onedata.id + ')>"' + trashIcon + '</a>' +
-                        // +'</td >'
                         + '</tr>'
                 });
 
@@ -194,75 +212,23 @@
             }
         );
 
-    })
-    ;
 
-    // pageInit: function (e, page) {
-    // do something when page initialized
-    // }
-    //
-    // app.on('pageBeforeIn', function (page) {
-    //
-    //     var self = this;
-    //
-    //     if(app.data.user.userEmail!=='John') {
-    //
-    //         app.dialog.alert('<b>Not authorised to be in this page, please login with proper credentials</b>', function () {
-    //
-    //
-    //             return app.router.navigate('/bookings-storage/');
-    //         });
-    //     }
-    //     // var self = this;
-    //     // Destroy all autocompletes
-    //     // self.autocompleteDropdownAll.destroy();
-    // });
+    });
 
 
-    // app.on('pageAfterIn', function (page) {
-    //
-    //     var self = this;
-    //
-    //     if(app.data.user.userEmail!=='John') {
-    //
-    //         app.dialog.alert('<b>Not authorised to be in this page, please login with proper credentials</b>', function () {
-    //
-    //
-    //             return app.router.navigate('/bookings-storage/');
-    //         });
-    //     }
-    //     // var self = this;
-    //     // Destroy all autocompletes
-    //     // self.autocompleteDropdownAll.destroy();
-    // });
+    // DON'T REMOVE THIS......
+    return {
 
-
-    // app.on('pageInit', function (page) {
-    //
-    //
-    //     var self = this;
-    //
-    //
-    //     if(app.data.user.userEmail!=='John') {
-    //
-    //         app.dialog.alert('<b>Not authorised to be in this page, please login with proper credentials</b>', function () {
-    //
-    //
-    //             return app.router.navigate('/bookings-storage/');
-    //         });
-    //     }
-    //     // var self = this;
-    //     // Destroy all autocompletes
-    //     // self.autocompleteDropdownAll.destroy();
-    // });
-
-
-    function deleteThis(id) {
-
-        console.log("PPPPPPPPPPPPPPPPPPP");
-
-        return;
-
+        data: function () {
+            var ios = this.$theme.ios;
+            return {
+                commentsIcon: ios ? '<i class="icon f7-icons">chat_fill</i>' : '<i class="icon material-icons">message</i>',
+                sortIcon: ios ? '<i class="icon f7-icons">sort</i>' : '<i class="icon material-icons">sort</i>',
+                moreIcon: ios ? '<i class="icon f7-icons">more_vertical_round</i>' : '<i class="icon material-icons">more_vert</i>',
+                trashIcon: ios ? '<i class="icon f7-icons">trash</i>' : '<i class="icon material-icons">delete</i>',
+                composeIcon: ios ? '<i class="icon f7-icons">compose</i>' : '<i class="icon material-icons">edit</i>'
+            }
+        }
 
     }
 

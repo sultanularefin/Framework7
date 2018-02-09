@@ -1,183 +1,392 @@
-<!--<template>-->
-<div class="view view-main view-init ios-edges" id="mainView" data-url="/">
-    <div class="page">
-        <div class="navbar">
-            <div class="navbar-inner sliding">
-                <div class="left">
-                    <a href="#" class="link back">
-                        <i class="icon icon-back"></i>
-                        <span class="ios-only">Back</span>
-                    </a>
-                </div>
-                <!--<div class="title">About Framework7-->
-                <div class="title">bookings page
-                    <!--<b> You are at bookings storage</b>-->
-                </div>
+<div class="page">
+    <div class="navbar">
+        <div class="navbar-inner sliding">
+            <div class="left">
+                <a href="./index.html" class="link back">
+                    <i class="icon icon-back"></i>
+                    <span class="ios-only">Back</span>
+                </a>
             </div>
+            <div class="title">Vehicle Bookings Page</div>
+            <div class="subnavbar">
+                <form class="searchbar" id="searchbar-autocomplete">
+                    <div class="searchbar-inner">
+                        <div class="searchbar-input-wrap">
+                            <input type="search" placeholder="Search"/>
+                            <i class="searchbar-icon"></i>
+                            <span class="input-clear-button"></span>
+                        </div>
+                        <span class="searchbar-disable-button">Cancel</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!--<template>-->
+    <!--<div class="page">-->
+    <!--<div class="navbar">-->
+    <!--<div class="navbar-inner sliding">-->
+    <!--<div class="left">-->
+    <!--<a href="#" class="link back">-->
+    <!--<i class="icon icon-back"></i>-->
+    <!--<span class="ios-only">Back</span>-->
+    <!--</a>-->
+    <!--</div>-->
+    <!--<div class="title">Your Booking</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="page-content">-->
+
+
+    <!--<div class="block-title">Your Bookings</div>-->
+
+
+    <div class="page-content">
+        <div class="block">
+            <!--<p>With forms storage it is easy to store and parse form data, especially on Ajax loaded pages. All you need to make it work is to add "form-store-data" class to your &lt;form&gt; and Framework7 will store form data with every input change. And the most awesome part is that when you load this page again Framework7 will parse this data and fill all form fields automatically!</p>-->
+            <!--<p>Just try to fill the form below and then go to any other page, or even you may close this site, and when you return here form fields will have kept your data.</p>-->
+            <h1 id="userinfo" style="color: crimson"></h1>
+            <p>You are at bookings storage page</p>
+
+
         </div>
 
 
-        <div class="page-content">
-            <div class="block">
-                <!--<p>With forms storage it is easy to store and parse form data, especially on Ajax loaded pages. All you need to make it work is to add "form-store-data" class to your &lt;form&gt; and Framework7 will store form data with every input change. And the most awesome part is that when you load this page again Framework7 will parse this data and fill all form fields automatically!</p>-->
-                <!--<p>Just try to fill the form below and then go to any other page, or even you may close this site, and when you return here form fields will have kept your data.</p>-->
-                <h1 id="userinfo" style="color: crimson"></h1>
-                <p>You are at bookings storage page</p>
+        <!--<form class="list form-store-data" id="my-form">-->
+
+        <form action="index.html" class="form-ajax-submit" id="my-form" method="post">
 
 
-            </div>
+            <div class="block-header"><b>Vehicle Booking Form</b></div>
+            <!--<form class="list" id="my-form">-->
+            <ul>
+
+                <!--<li>-->
+                <!--<div class="item-content item-input">-->
+                <!--<div class="item-inner">-->
+                <!--&lt;!&ndash;<div class="item-title item-label">E-mail</div>&ndash;&gt;-->
+                <!--<div class="item-title item-label">Test</div>-->
+                <!--<div class="item-input-wrap">-->
+                <!--&lt;!&ndash;<input name="birthday" type="date" value="2014-04-30"&ndash;&gt;-->
+                <!--&lt;!&ndash;placeholder="Please choose...">&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--&lt;!&ndash;<div class="item-input-wrap">&ndash;&gt;-->
+                <!--<input name="testTextValueAjax" type="text" id="testajax" placeholder="Please choose for test..."-->
+                <!--required validate>-->
+                <!--<span class="input-clear-button"></span>-->
+                <!--&lt;!&ndash;<div class="item-input-info">Default "required" validation</div>&ndash;&gt;-->
+                <!--&lt;!&ndash;<input type="email" name="email" placeholder="E-mail">&ndash;&gt;-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</li>-->
 
 
-            <!--<form class="list form-store-data" id="my-form">-->
-
-            <form action="index.html" class="form-ajax-submit" id="my-form" method="post">
-
-
-
-
-
-                <div class="block-header"><b>Vehicle Booking Form</b></div>
-                <!--<form class="list" id="my-form">-->
-                <ul>
-
-                    <li>
-                        <div class="item-content item-input">
-                            <div class="item-inner">
-                                <!--<div class="item-title item-label">E-mail</div>-->
-                                <div class="item-title item-label">Test</div>
-                                <div class="item-input-wrap">
-                                    <!--<input name="birthday" type="date" value="2014-04-30"-->
-                                    <!--placeholder="Please choose...">-->
-                                    <!--</div>-->
-                                    <!--<div class="item-input-wrap">-->
-                                    <input name="testTextValueAjax" type="text" id="testajax" placeholder="Please choose for test..."
-                                           required validate>
-                                    <span class="input-clear-button"></span>
-                                    <!--<div class="item-input-info">Default "required" validation</div>-->
-                                    <!--<input type="email" name="email" placeholder="E-mail">-->
-                                </div>
+                <li>
+                    <div class="item-content item-input">
+                        <div class="item-inner">
+                            <div class="item-title item-label">Destination</div>
+                            <div class="item-input-wrap">
+                                <input name="destination_name" id="Destination_autocomplete-dropdown-all"
+                                       type="text"
+                                       placeholder="Select your destination from here." required validate>
+                                <span class="input-clear-button"></span>
+                                <!--<div class="item-input-info">Default "required" validation</div>-->
+                                <!--<input type="text" name="name" placeholder="Your name">-->
                             </div>
                         </div>
-                    </li>
-
-
-                    <li>
-                        <div class="item-content item-input">
-                            <div class="item-inner">
-                                <div class="item-title item-label">Destination</div>
-                                <div class="item-input-wrap">
-                                    <input name="destination_name" id="Destination_autocomplete-dropdown-all" type="text"
-                                           placeholder="Select your destination from here." required validate>
-                                    <span class="input-clear-button"></span>
-                                    <!--<div class="item-input-info">Default "required" validation</div>-->
-                                    <!--<input type="text" name="name" placeholder="Your name">-->
-                                </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content item-input">
+                        <div class="item-inner">
+                            <div class="item-title item-label">Car Number</div>
+                            <div class="item-input-wrap">
+                                <input name="car_name" id="Car_autocomplete-dropdown-all" type="text"
+                                       placeholder="Car Number."
+                                       required validate>
+                                <span class="input-clear-button"></span>
+                                <!--<div class="item-input-info">Default "required" validation</div>-->
+                                <!--<input type="text" name="name" placeholder="Your name">-->
                             </div>
                         </div>
-                    </li>
-                    <li>
-                        <div class="item-content item-input">
-                            <div class="item-inner">
-                                <div class="item-title item-label">Car Number</div>
-                                <div class="item-input-wrap">
-                                    <input name="car_name"  id="Car_autocomplete-dropdown-all" type="text" placeholder="Car Number."
-                                           required validate>
-                                    <span class="input-clear-button"></span>
-                                    <!--<div class="item-input-info">Default "required" validation</div>-->
-                                    <!--<input type="text" name="name" placeholder="Your name">-->
-                                </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content item-input">
+                        <div class="item-inner">
+                            <div class="item-title item-label">Pick Up Form</div>
+                            <div class="item-input-wrap">
+                                <input name="pickUpLocationName" id="PickUPLocation_autocomplete-dropdown-all"
+                                       type="text"
+                                       placeholder="Specify pick Up Location."
+                                       required validate>
+                                <span class="input-clear-button"></span>
+                                <!--<div class="item-input-info">Default "required" validation</div>-->
+                                <!--<select name="gender" placeholder="Please choose...">-->
+                                <!--<option value="Male">Male</option>-->
+                                <!--<option value="Female">Female</option>-->
+                                <!--</select>-->
+                                <!--<input type="text" name="name" placeholder="Your name">-->
                             </div>
                         </div>
-                    </li>
-                    <li>
-                        <div class="item-content item-input">
-                            <div class="item-inner">
-                                <div class="item-title item-label">Pick Up Form</div>
-                                <div class="item-input-wrap">
-                                    <input name="pickUpLocationName" id="PickUPLocation_autocomplete-dropdown-all" type="text"
-                                           placeholder="Specify pick Up Location."
-                                           required validate>
-                                    <span class="input-clear-button"></span>
-                                    <!--<div class="item-input-info">Default "required" validation</div>-->
-                                    <!--<select name="gender" placeholder="Please choose...">-->
-                                    <!--<option value="Male">Male</option>-->
-                                    <!--<option value="Female">Female</option>-->
-                                    <!--</select>-->
-                                    <!--<input type="text" name="name" placeholder="Your name">-->
-                                </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content item-input">
+                        <div class="item-inner">
+                            <!--<div class="item-title item-label">E-mail</div>-->
+                            <div class="item-title item-label">Return Time</div>
+                            <div class="item-input-wrap">
+                                <!--<input name="birthday" type="date" value="2014-04-30"-->
+                                <!--placeholder="Please choose...">-->
+                                <!--</div>-->
+                                <!--<div class="item-input-wrap">-->
+                                <input name="returnTime" type="date" value="2014-04-30" id="returnDate"
+                                       placeholder="Please choose..."
+                                       required validate>
+                                <span class="input-clear-button"></span>
+                                <!--<div class="item-input-info">Default "required" validation</div>-->
+                                <!--<input type="email" name="email" placeholder="E-mail">-->
                             </div>
                         </div>
-                    </li>
-                    <li>
-                        <div class="item-content item-input">
-                            <div class="item-inner">
-                                <!--<div class="item-title item-label">E-mail</div>-->
-                                <div class="item-title item-label">Return Time</div>
-                                <div class="item-input-wrap">
-                                    <!--<input name="birthday" type="date" value="2014-04-30"-->
-                                    <!--placeholder="Please choose...">-->
-                                    <!--</div>-->
-                                    <!--<div class="item-input-wrap">-->
-                                    <input name="returnTime" type="date" value="2014-04-30" id="returnDate" placeholder="Please choose..."
-                                           required validate>
-                                    <span class="input-clear-button"></span>
-                                    <!--<div class="item-input-info">Default "required" validation</div>-->
-                                    <!--<input type="email" name="email" placeholder="E-mail">-->
-                                </div>
+                    </div>
+                </li>
+
+
+                <li>
+                    <div class="item-content item-input">
+                        <div class="item-inner">
+                            <div class="item-title item-label">Number of Passengers</div>
+                            <div class="item-input-wrap">
+                                <!--<select name="gender">-->
+                                <!--<option value="male" selected>Male</option>-->
+                                <!--<option value="female">Female</option>-->
+                                <!--</select>-->
+
+                                <!--<input type="text" placeholder="Your name" required validate>-->
+
+
+                                <input name="number_of_passanger" id="passangers" type="number" required
+                                       validate
+                                       pattern="[0-9]*" data-error-message="Only numbers please!"
+                                       placeholder="Enter number of passengers.">
+                                <span class="input-clear-button"></span>
+                                <!--<div class="item-input-info">Default "required" validation</div>-->
                             </div>
                         </div>
-                    </li>
+                    </div>
+                </li>
 
 
+            </ul>
+
+            <input type="submit" class="button" onclick="InsertBooking()" value="Book your ride">
+
+        </form>
 
 
-                    <li>
-                        <div class="item-content item-input">
-                            <div class="item-inner">
-                                <div class="item-title item-label">Number of Passengers</div>
-                                <div class="item-input-wrap">
-                                    <!--<select name="gender">-->
-                                    <!--<option value="male" selected>Male</option>-->
-                                    <!--<option value="female">Female</option>-->
-                                    <!--</select>-->
-
-                                    <!--<input type="text" placeholder="Your name" required validate>-->
-
-
-                                    <input name="number_of_passanger" id="passangers" type="number" required validate
-                                           pattern="[0-9]*" data-error-message="Only numbers please!"
-                                           placeholder="Enter number of passengers.">
-                                    <span class="input-clear-button"></span>
-                                    <!--<div class="item-input-info">Default "required" validation</div>-->
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-
-
-
-
-                </ul>
-
-                <input type="submit" class="button" onclick="InsertBooking()" value="Book your ride">
-
-            </form>
-
-
-        </div>
     </div>
 </div>
 <!--</template>-->
 <!--comment otherwise will not load page.-->
 
-<script src="../dist/js/framework7.min.js"></script>
+<style>
+    .red-link {
+        color: red;
+    }
+</style>
 
-<script src="js/routes.js"></script>
-<script src="js/app.js"></script>
-<script src="js/jquery-3.2.1.js"></script>
+<script src="../../dist/js/framework7.min.js"></script>
+
+<script src="../js/routes.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/jquery-3.2.1.js"></script>
+
 
 <script>
+    //NONE OF THIS WORKS
+    "use strict";
+    console.log(app.data);
 
+    var $ = this.$;
+    authenticateUser();
+
+    var $$ = Dom7;
+
+    console.log("app: ");
+    console.log(app);
+
+
+    console.log($$);
+
+    console.log($);
+
+    // no need requres when accessing html pages in ./pages section.
+    // var app = this.$app;
+    //var app = new Framework7();
+
+    $$(document).ready(function () {
+        console.log("ready at yourbooking.html!");
+
+        function openalert() {
+            console.log('dfdf');
+
+        }
+    });
+
+    function openalert() {
+        console.log('dfdf');
+
+    }
+
+
+    // no need requres when accessing html pages in ./pages section.
+    // var app = this.$app;
+    //var app = new Framework7();
+
+
+    // $(document).ready(function () {
+    //     console.log("ready at editbooking.html!");
+    // });
+
+
+    app.on('pageInit', function (e, page) {
+
+
+
+
+        // AFTER SOME ENGINEERING THIS WAS FOUND THE BEST SOLUTION
+        // DON'T MESS WITH ROUTER.NAVIGATE IN THIS PAGE'
+
+        console.log("XXXXXXXX");
+
+        if (app.data.user.userEmail === 'John') {
+
+
+            // console.log("XXXXXXXX");
+            app.dialog.alert('<b style="color:crimson">Not authorised to be in this page, please' +
+                ' login with proper credentials</b>',
+                function () {
+                    app.currentPage.// app.loginScreen.close();
+
+                        return
+                    app.views.main.router.navigate('/home/', history = true);
+                    // return app.router.navigate('/home/', {reloadCurrent: false});
+                });
+            // return app.router.navigate('../kitchen-sink/index/');
+
+            // return
+
+        }
+        ;
+
+    });
+    //
+    // app.on('pageAfterIn', function (page) {
+    //
+    //
+    //     // $$('#returnDate').val();
+    //     var logger_info = "you are (usermail):" + app.data.user.userEmail;
+    //     // console.log(app.data);
+    //     $$('#userinfo').html(logger_info);
+    //
+    //     // document.getElementById('userInfo').html
+    //
+    //     // do something after page gets into the view\n' +
+    // });
+    //
+    // app.on('pageAfterIn', function (page) {
+    //
+    //
+    //     // $$('#returnDate').val();
+    //     var logger_info = "you are (usermail):" + app.data.user.userEmail;
+    //     // console.log("oooo:");
+    //     // $$('#userinfo').html(logger_info);
+    //
+    //
+    //     // autocompleteDropdownAlldes.value="wer";
+    //     // document.getElementById('userInfo').html
+    //
+    //
+    //     // do something after page gets into the view\n' +
+    // });
+    //
+    // app.on('pageAfterOut', function (page) {
+    //     console.log("ppp");
+    //
+    // });
+
+
+    // Option 1. Using one 'page:init' handler for all pages
+    $$(document).on('page:beforein', function (e) {
+
+        console.log("XX");
+        // Do something here when page loaded and initialized
+    })
+
+    // Option 2. Using live 'page:init' event handlers for each page
+    $$(document).on('page:init', '.page[data-name="about"]', function (e) {
+        // Do something here when page with data-name="about" attribute loaded and initialized
+        console.log("WW");
+    })
+
+    $$(document).on('page:afterin', '.page[data-name="about"]', function (e) {
+        // Do something here when page with data-name="about" attribute loaded and initialized
+        console.log("WW");
+
+        function openalert() {
+            console.log('dfdf');
+
+        }
+    })
+
+
+    $$(document).on('page:init', function (e) {
+        // Page Data contains all required information about loaded and initialized page
+        var page = e.detail;
+
+        console.log("dd");
+
+        function openalert() {
+            console.log('dfdf');
+
+        }
+    })
+
+
+    function openalert() {
+        console.log('dfdf');
+
+    }
+
+
+    // DON'T REMOVE THIS......
+    // DON'T REMOVE THIS......
+    return {
+
+        methods: {
+            openalert: function () {
+
+                console.log("hello world");
+
+                app.dialog.alert('Hello world!');
+            },
+        },
+        on: {
+            pageInit: function () {
+                // do something on page init
+            },
+            pageAfterOut: function () {
+                // page has left the view
+            },
+        }
+    }
 
 
 </script>
+
+
+
+

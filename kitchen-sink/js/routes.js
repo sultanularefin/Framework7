@@ -132,6 +132,11 @@ var routes = [
         componentUrl:'./pages/yourbooking.html',
 
     },
+
+    {
+        path:'/editbookings/',
+        componentUrl: './pages/editbookings.html',
+    },
     {
         path: '/dialog/',
         componentUrl: './pages/dialog.html',

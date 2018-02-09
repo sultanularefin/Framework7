@@ -5,16 +5,14 @@ require 'dbconfig.php';
 //    print("xxxxxxxxxxxxxxx");
 //    exit();
 
-$table = "";
-$userid = "";
+//$table = "";
+$bookings_id= "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
-    $userid = isset($_POST["user"]) ? $_POST["user"] : "";
-    $table = isset($_POST["table"]) ? $_POST["table"] : "";
-
-
+    $bookinid = isset($_POST["bookings_id"]) ? $_POST["bookings_id"] : "";
+//    $table = isset($_POST["table"]) ? $_POST["table"] : "";
 //    $uname = isset($_POST["username"]) ? $_POST["username"] : "";
 //    $password = isset($_POST["password"]) ? $_POST["password"] : "";
 
@@ -30,14 +28,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //echo "username and password: ",$uname,$pass;
 }
 
-$query = "select bookings.bookings_id,bookings.bookingTime,bookings.returnTime,bookings.passengers,car.name,
- location.value, pickuplocation.pickUpLoc from pickuplocation, bookings,car,location where car.car_id = bookings.carNumber 
-and location.location_id=bookings.destination and pickuplocation.loc_id= bookings.pickupFrom and bookings.userid=$userid;";
+$query = "SELECT * FROM bookings INNER JOIN car on car.car_id= bookings.carNumber INNER join pickuplocation 
+on pickuplocation.loc_id= bookings.pickupFrom INNER join location
+ on location.location_id = bookings.destination where bookings.bookings_id= $bookinid;";
 
 
-//$query = "select * from $table where userid=$userid;";
+
 //print_r($query);
 //exit();
+//$query = "select * from $table where userid=$userid;";
 
 
 //    $query = "select title,description,user_id  from posts where posts.id='$post_id';";
@@ -50,10 +49,8 @@ if ($conn->connect_error) {
 
 //    print("At line 49");
 
-
     echo json_encode(array("value" => 0, "message" => 'Connection error with database, please try again '));
 //    die($connection->connect_error);
-
 
 }
 
@@ -74,16 +71,6 @@ if (!$result) {
     $num = $result->num_rows;
 
 
-//    $row = $result->fetch_array(MYSQLI_NUM);
-
-
-//            $row = $result->fetch_array(MYSQLI_ASSOC);
-
-
-//        print($row[0]);
-//        exit();
-    $id = '';
-    $value = '';
     $index = 1;
 //    $oneLocation->id=0;
 //    $oneLocation->value='';
@@ -91,43 +78,65 @@ if (!$result) {
     class vehicleBooking
     {
         public $bookings_id;
-        public $destination;
-        public $bookingtime;
-        public $PickUpLocation;
-        public $PassengerNumber;
+        public $destinationId;
+        public $destinationName;
+        public $CarId;
         public $CarName;
+        public $bookingTime;
         public $ReturnTime;
+        public $PickUpLocationId;
+        public $PickUpLocationName;
+        public $PassengerNumber;
+        public $userId;
+
+//        public $destinationValue;
+//        public $PickUpLocation;
 
     }
 
-    $arrayOfBookings = array();
-
+//    $arrayOfBookings = array();
+    //only one result will be returned in this editbookings
     while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
 
 
-        $bookings_id = ($row['bookings_id']);
-        $bookingtime = ($row['bookingTime']);
-        $ReturnTime = ($row['returnTime']);
-        $PassengerNumber = ($row['passengers']);
+        $bookings_id =($row['bookings_id']);
+        $destinationId =($row['destination']);
+        $destinationName = ($row['value']);
+        $CarId =($row['car_id']);
         $CarName = ($row['name']);
-        $destination = ($row['value']);
-        $PickUpLocation = ($row['pickUpLoc']);
-
+        $bookingTime = ($row['bookingTime']);
+        $ReturnTime = ($row['returnTime']);
+        $PickUpLocationId =  ($row['loc_id']);
+        $PickUpLocationName= ($row['pickUpLoc']);
+        $PassengerNumber = ($row['passengers']);
+        $userId = ($row['userid']);
 
         $oneInstance = new vehicleBooking();
 
 
         $oneInstance->bookings_id = $bookings_id;
-        $oneInstance->bookingtime = $bookingtime;
+        $oneInstance->destinationId=$destinationId;
+        $oneInstance->destinationName=$destinationName;
+        $oneInstance->CarId= $CarId;
+        $oneInstance->CarName=$CarName;
+        $oneInstance->bookingTime = $bookingTime;
         $oneInstance->ReturnTime = $ReturnTime;
+        $oneInstance->PickUpLocationName = $PickUpLocationName;
+        $oneInstance->PickUpLocationId=$PickUpLocationId;
         $oneInstance->PassengerNumber = $PassengerNumber;
-        $oneInstance->CarName = $CarName;
-        $oneInstance->destination = $destination;
-        $oneInstance->PickUpLocation = $PickUpLocation;
+        $oneInstance->userId=$userId;
+
+
+
+//        print_r($oneInstance);
+
+//        exit();
+
 
 //        print_r($oneInstance);
 
         $arrayOfBookings[] = $oneInstance;
+
 
 
         $index = $index + 1;

@@ -1,47 +1,179 @@
-<template>
-    <div class="page">
-        <div class="navbar">
-            <div class="navbar-inner sliding">
-                <div class="left">
-                    <a href="#" class="link back">
-                        <i class="icon icon-back"></i>
-                        <span class="ios-only">Back</span>
-                    </a>
-                </div>
-                <div class="title">Vehicle Bookings Page</div>
-                <div class="subnavbar">
-                    <form class="searchbar" id="searchbar-autocomplete">
-                        <div class="searchbar-inner">
-                            <div class="searchbar-input-wrap">
-                                <input type="search" placeholder="Search"/>
-                                <i class="searchbar-icon"></i>
-                                <span class="input-clear-button"></span>
-                            </div>
-                            <span class="searchbar-disable-button">Cancel</span>
-                        </div>
-                    </form>
-                </div>
+<div class="page">
+    <div class="navbar">
+        <div class="navbar-inner sliding">
+            <div class="left">
+                <a href="#" class="link back">
+                    <i class="icon icon-back"></i>
+                    <span class="ios-only">Back</span>
+                </a>
             </div>
-        </div>
-        <div class="page-content">
-
-            <div class="list no-hairlines-md">
-                <div class="block-header">Dropdown With All Values</div>
-                <ul>
-                    <li class="item-content item-input">
-                        <div class="item-inner">
-                            <div class="item-title item-label">Fruit</div>
-                            <div class="item-input-wrap">
-                                <input type="text" placeholder="Fruit" id="autocomplete-dropdown-all"/>
-                            </div>
+            <div class="title">Vehicle Bookings Page</div>
+            <div class="subnavbar">
+                <form class="searchbar" id="searchbar-autocomplete">
+                    <div class="searchbar-inner">
+                        <div class="searchbar-input-wrap">
+                            <input type="search" placeholder="Search"/>
+                            <i class="searchbar-icon"></i>
+                            <span class="input-clear-button"></span>
                         </div>
-                    </li>
-                </ul>
+                        <span class="searchbar-disable-button">Cancel</span>
+                    </div>
+                </form>
             </div>
-
         </div>
     </div>
-</template>
+
+
+    <div class="page-content">
+        <div class="block">
+            <!--<p>With forms storage it is easy to store and parse form data, especially on Ajax loaded pages. All you need to make it work is to add "form-store-data" class to your &lt;form&gt; and Framework7 will store form data with every input change. And the most awesome part is that when you load this page again Framework7 will parse this data and fill all form fields automatically!</p>-->
+            <!--<p>Just try to fill the form below and then go to any other page, or even you may close this site, and when you return here form fields will have kept your data.</p>-->
+            <h1 id="userinfo" style="color: crimson"></h1>
+            <p>You are at bookings storage page</p>
+
+
+        </div>
+
+
+        <!--<form class="list form-store-data" id="my-form">-->
+
+        <form action="index.html" class="form-ajax-submit" id="my-form" method="post">
+
+
+            <div class="block-header"><b>Vehicle Booking Form</b></div>
+            <!--<form class="list" id="my-form">-->
+            <ul>
+
+                <!--<li>-->
+                <!--<div class="item-content item-input">-->
+                <!--<div class="item-inner">-->
+                <!--&lt;!&ndash;<div class="item-title item-label">E-mail</div>&ndash;&gt;-->
+                <!--<div class="item-title item-label">Test</div>-->
+                <!--<div class="item-input-wrap">-->
+                <!--&lt;!&ndash;<input name="birthday" type="date" value="2014-04-30"&ndash;&gt;-->
+                <!--&lt;!&ndash;placeholder="Please choose...">&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--&lt;!&ndash;<div class="item-input-wrap">&ndash;&gt;-->
+                <!--<input name="testTextValueAjax" type="text" id="testajax" placeholder="Please choose for test..."-->
+                <!--required validate>-->
+                <!--<span class="input-clear-button"></span>-->
+                <!--&lt;!&ndash;<div class="item-input-info">Default "required" validation</div>&ndash;&gt;-->
+                <!--&lt;!&ndash;<input type="email" name="email" placeholder="E-mail">&ndash;&gt;-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</li>-->
+
+
+                <li>
+                    <div class="item-content item-input">
+                        <div class="item-inner">
+                            <div class="item-title item-label">Destination</div>
+                            <div class="item-input-wrap">
+                                <input name="destination_name" id="Destination_autocomplete-dropdown-all"
+                                       type="text"
+                                       placeholder="Select your destination from here." required validate>
+                                <span class="input-clear-button"></span>
+                                <!--<div class="item-input-info">Default "required" validation</div>-->
+                                <!--<input type="text" name="name" placeholder="Your name">-->
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content item-input">
+                        <div class="item-inner">
+                            <div class="item-title item-label">Car Number</div>
+                            <div class="item-input-wrap">
+                                <input name="car_name" id="Car_autocomplete-dropdown-all" type="text"
+                                       placeholder="Car Number."
+                                       required validate>
+                                <span class="input-clear-button"></span>
+                                <!--<div class="item-input-info">Default "required" validation</div>-->
+                                <!--<input type="text" name="name" placeholder="Your name">-->
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content item-input">
+                        <div class="item-inner">
+                            <div class="item-title item-label">Pick Up Form</div>
+                            <div class="item-input-wrap">
+                                <input name="pickUpLocationName" id="PickUPLocation_autocomplete-dropdown-all"
+                                       type="text"
+                                       placeholder="Specify pick Up Location."
+                                       required validate>
+                                <span class="input-clear-button"></span>
+                                <!--<div class="item-input-info">Default "required" validation</div>-->
+                                <!--<select name="gender" placeholder="Please choose...">-->
+                                <!--<option value="Male">Male</option>-->
+                                <!--<option value="Female">Female</option>-->
+                                <!--</select>-->
+                                <!--<input type="text" name="name" placeholder="Your name">-->
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content item-input">
+                        <div class="item-inner">
+                            <!--<div class="item-title item-label">E-mail</div>-->
+                            <div class="item-title item-label">Return Time</div>
+                            <div class="item-input-wrap">
+                                <!--<input name="birthday" type="date" value="2014-04-30"-->
+                                <!--placeholder="Please choose...">-->
+                                <!--</div>-->
+                                <!--<div class="item-input-wrap">-->
+                                <input name="returnTime" type="date" value="2014-04-30" id="returnDate"
+                                       placeholder="Please choose..."
+                                       required validate>
+                                <span class="input-clear-button"></span>
+                                <!--<div class="item-input-info">Default "required" validation</div>-->
+                                <!--<input type="email" name="email" placeholder="E-mail">-->
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+
+                <li>
+                    <div class="item-content item-input">
+                        <div class="item-inner">
+                            <div class="item-title item-label">Number of Passengers</div>
+                            <div class="item-input-wrap">
+                                <!--<select name="gender">-->
+                                <!--<option value="male" selected>Male</option>-->
+                                <!--<option value="female">Female</option>-->
+                                <!--</select>-->
+
+                                <!--<input type="text" placeholder="Your name" required validate>-->
+
+
+                                <input name="number_of_passanger" id="passangers" type="number" required
+                                       validate
+                                       pattern="[0-9]*" data-error-message="Only numbers please!"
+                                       placeholder="Enter number of passengers.">
+                                <span class="input-clear-button"></span>
+                                <!--<div class="item-input-info">Default "required" validation</div>-->
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+
+            </ul>
+
+            <input type="submit" class="button" onclick="InsertBooking()" value="Book your ride">
+
+        </form>
+
+
+    </div>
+
+
+</div>
+
 <script>
 
     var $ = this.$;

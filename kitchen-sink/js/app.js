@@ -20,6 +20,11 @@ var app = new Framework7({
                 password: 'Doe',
                 userid:0,
             },
+            bookings:{
+                id:0,
+                booking_date:0,
+
+            }
         };
     },
     // Enable swipe panel
@@ -46,3 +51,8 @@ var app = new Framework7({
 });
 
 var mainView = app.views.create('.view-main');
+
+// console.log(mainView);
+
+
+// alert(mainView);

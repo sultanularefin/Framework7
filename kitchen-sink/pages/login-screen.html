@@ -71,7 +71,7 @@
                                 <li><a href="#" class="item-link list-button" @click="signIn">Sign In</a></li>
                             </ul>
                             <!--<div class="block-footer">Some text about login information.<br>Lorem ipsum dolor sit amet,-->
-                                <!--consectetur adipiscing elit.-->
+                            <!--consectetur adipiscing elit.-->
                             <!--</div>-->
                         </div>
                     </form>
@@ -100,6 +100,8 @@
         console.log("ready at login-screen.html!");
     });
 
+    // var a="33";
+
 
     // noinspection JSAnnotator
     return {
@@ -110,6 +112,11 @@
                 var $ = this.$;
                 var app = this.$app;
                 var $$ = Dom7;
+
+
+                // alert("a: ");
+                // alert(a);
+
                 //console.log(password);
 
 
@@ -142,10 +149,10 @@
                 // var app = new Framework7();
 
 
-                  // console.log(email);
-                  // console.log(password);
+                // console.log(email);
+                // console.log(password);
 
-                  // return;
+                // return;
 
 
                 //var mainView = app.views.create('.view-main');
@@ -157,8 +164,8 @@
                 app.request.post('../authenticate.php', {email: email, password: password}, function (data) {
 
 
-                    console.log(data);
-                         x = JSON.parse(data);
+                        console.log(data);
+                        x = JSON.parse(data);
                         // console.log(x.value);
 
                         // return;
@@ -177,9 +184,23 @@
 
                                 app.data.user.userEmail = successEmail;
                                 app.data.user.password = successPassword;
-                                app.data.user.userid=x.value
+                                app.data.user.userid = x.value
 
-                                return app.router.navigate('/bookings-storage/');
+                                // return app.views.main.router.navigate('/home/', history = true);
+
+                                //THIS WORKS
+                                // return app.views.main.router.navigate('/about/', history = true);
+
+                                return app.views.main.router.navigate('/', history = true);
+
+
+
+
+                                // path: '/about/',
+                                //     url: './pages/about.html'
+
+
+                                // return app.router.navigate('/bookings-storage/');
 
                                 // return app.router.navigate('/vehiclebooking/');
 
@@ -210,8 +231,6 @@
 
                             });
                         }
-
-
                     },
                     function (data) {
                         console.log("error");

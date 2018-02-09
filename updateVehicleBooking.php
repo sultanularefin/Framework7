@@ -2,55 +2,76 @@
 header("Content-Type: application/json; charset=UTF-8");
 require 'dbconfig.php';
 
-//    print("xxxxxxxxxxxxxxx");
-//    exit();
-
 $table = "";
 $dropdownData = "";
+$bookings_id = "";
+$booking_date = "";
+$returnDate = "";
+$userid="";
+//$booking_date = "";
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     $table = isset($_POST["table"]) ? $_POST["table"] : "";
+    $booking_id = isset($_POST["bookings_id"]) ? $_POST["bookings_id"] : "";
+//    $booking_date = isset($_POST["bookings_id"]) ? $_POST["bookings_id"] : "";
+
     $userid = isset($_POST["userid"]) ? $_POST["userid"] : "";
 
-    $ddldata = json_decode($_POST["data"], true);
+
+
 
 //    print_r($ddldata);
 
-    $returnDate = isset($_POST["date"]) ? $_POST["date"] : "";
+    $returnDate = isset($_POST["returnDate"]) ? $_POST["returnDate"] : "";
     $passangerNumber = isset($_POST["passangerNumber"]) ? $_POST["passangerNumber"] : "";
+    $booking_date = isset($_POST["booking_date"]) ? $_POST["booking_date"] : "";
+
+//
+//    print("return Date:");
+//    print_r($returnDate);
+//
+//    print("booking date:");
+//
+//    print_r($booking_date);
+//
+//    print("booking id:");
+//    print_r($booking_id);
 
 
-//    print($returnDate);
+//    exit();
+
+    $ddldata = json_decode($_POST["data"], true);
 //
 //    print($passangerNumber);
 //    print($table);
 
 
-//    print_r($ddldata);
+//   print_r($ddldata);
+//
+//   exit();
 
-    $destination= $ddldata[1]['selectedValue'];
+    $destination = $ddldata[1]['selectedValue'];
 
 //    print_r($ddldata[2]);
 
 //    print_r($destination);
 
 
-
 //    exit();
 
-    $car =$ddldata[2]['selectedValue'];
+    $car = $ddldata[2]['selectedValue'];
 
-    $pickUpLocation=$ddldata[0]['selectedValue'];
+    $pickUpLocation = $ddldata[0]['selectedValue'];
 
 //    $bookingTime=getdate();
 
-    $bookingTime=date("Y-m-d");
+
+    $edited_time = date("Y-m-d");
 
 //    print($d);
-
 
 
 //    exit();
@@ -83,17 +104,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 //    print($password);
 
     //echo "username and password: ",$uname,$pass;
-    $edited_time = 'NULL';
 }
 
 
-$query = "INSERT INTO ".$table."(destination, carNumber, bookingTime, returnTime, pickupFrom, passengers,userid) 
-VALUES ($destination,$car,('$bookingTime'),('$returnDate'),$pickUpLocation,$passangerNumber,$userid);";
+$query = "update " . $table . " set destination = $destination, carNumber= $car, bookingTime=('$booking_date'), returnTime=('$returnDate'),
+ pickupFrom= $pickUpLocation, passengers= $passangerNumber,userid= $userid,edited_time=('$edited_time') where bookings_id= $booking_id";
+
 
 //print_r($query);
 //exit();
 //
-
 
 
 //    $query = "select title,description,user_id  from posts where posts.id='$post_id';";
@@ -117,8 +137,6 @@ if ($conn->connect_error) {
 $result = $conn->query($query);
 
 
-
-
 if (!$result) {
 
 //        echo json_error('Email not found please enter valid email.');
@@ -128,7 +146,7 @@ if (!$result) {
 } else {
 
 
-    echo json_encode(array("value" => 1, "message" =>"Success"));
+    echo json_encode(array("value" => 1, "message" => "Success"));
 //    print($myJSON);
 }
 

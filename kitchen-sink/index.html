@@ -207,17 +207,38 @@
                             </a>
                         </li>
 
-                        <li>
-                            <a class="item-content item-link" href="/book-vehicle/">
-                                <div class="item-media">
-                                    <i class="icon icon-f7"></i>
-                                </div>
-                                <div class="item-inner">
-                                    <div class="item-title">Book Vehicle</div>
-                                </div>
-                            </a>
-                        </li>
+                        <!--<li>-->
+                            <!--<a class="item-content item-link" href="/book-vehicle/">-->
+                                <!--<div class="item-media">-->
+                                    <!--<i class="icon icon-f7"></i>-->
+                                <!--</div>-->
+                                <!--<div class="item-inner">-->
+                                    <!--<div class="item-title">Book Vehicle</div>-->
+                                <!--</div>-->
+                            <!--</a>-->
+                        <!--</li>-->
 
+                        <!--<li>-->
+                            <!--<a class="item-content item-link" href="/editbookings/">-->
+                                <!--<div class="item-media">-->
+                                    <!--<i class="icon icon-f7"></i>-->
+                                <!--</div>-->
+                                <!--<div class="item-inner">-->
+                                    <!--<div class="item-title">Edit Bookings</div>-->
+                                <!--</div>-->
+                            <!--</a>-->
+                        <!--</li>-->
+
+                        <!--<li>-->
+                            <!--<a class="item-content item-link" href="/vehiclebooking/">-->
+                                <!--<div class="item-media">-->
+                                    <!--<i class="icon icon-f7"></i>-->
+                                <!--</div>-->
+                                <!--<div class="item-inner">-->
+                                    <!--<div class="item-title">Vehicle Booking</div>-->
+                                <!--</div>-->
+                            <!--</a>-->
+                        <!--</li>-->
 
                     </ul>
                 </div>
@@ -331,6 +352,104 @@
     //     console.log("at loadDestination ")
 
 
+    // console.log(mainView);
+
+
+    function EditThis(id) {
+
+
+        app.data.bookings.id = parseInt(id);
+
+        console.log(id);
+
+        // alert(id);
+
+
+        // BOTH OF THEM WORKS
+        app.views.main.router.navigate('/editbookings/', history = true);
+
+
+        // return app.router.navigate('/editbookings/',history=false);
+
+
+        // mainView.loadPage('/editbookings/');
+
+
+        // return app.router.navigate('/editbookings/');
+
+        // console.log(id);
+        // console.log("At yourbooking.html in index.html");
+
+    }
+
+
+    function DeleteThis(id) {
+
+
+        app.dialog.confirm('<b>Are you sure you want to delete this booking?</b>', 'Delete Booking', function () {
+
+
+                var table = "bookings";
+                // var userid = app.data.user.userid;
+
+                // var userid = 1;
+
+                id = parseInt(id);
+
+                // var id = number(id);
+
+                alert(id);
+
+                console.log(id);
+
+
+                app.request.post('../removebooking.php', {
+                        id: id,
+                        table: table,
+                    }, function (data) {
+
+
+                        console.log(data);
+
+
+                        x = JSON.parse(data);
+
+                        var message = x.message;
+                        if (x.value === 1) {
+
+
+                            app.dialog.alert('<b>Deletion succeded please refresh the page to see the result.</b>', 'Delete Booking succeed', function () {
+                                return app.router.navigate('/yourbooking/');
+
+
+                            });
+                        }
+
+                        else {
+                            console.log("error in index.html line 373 removebooking");
+                        }
+                    },
+                    function (data) {
+                        console.log("error");
+
+                    }
+                );
+
+            },
+            function () {
+
+
+                app.dialog.alert('<b>Deletion cancelled</b>', 'Delete Booking', function () {
+                    return app.router.navigate('/yourbooking/');
+
+                });
+
+            });
+
+
+    };
+
+
     function InsertBooking() {
 
 
@@ -375,14 +494,16 @@
         // $$('#anim').css({left: left + 'px'})
         // animId = app.utils.requestAnimationFrame(anim);
         // console.log("LOG");
+
         var table = "bookings";
+        var userid = parseInt(app.data.user.userid) === 0 ? 1 : app.data.user.userid;
 
         app.request.post('../ReserveVehicle.php/', {
                 table: table,
                 data: ddldata,
                 date: returnDate,
                 passangerNumber: passanger_number,
-                userid: app.data.user.userid,
+                userid: userid,
             }, function (reserveData) {
 
 
@@ -392,14 +513,12 @@
 
                 if (x.value === 1) {
 
-                    console.log(selectedChoices[1]);
+                    console.log(selectedChoices[0]);
 
                     app.dialog.alert('<b>Congratulatoin, ' + app.data.user.userEmail + '  have Successfully made reservation of the vehicle </b>'
-                        + selectedChoices[3].selectedText +
+                        + selectedChoices[2].selectedText +
                         ' Your Ride will be available at (' +
-                        + selectedChoices[1].selectedValue +') '+ selectedChoices[1].selectedText +' Please, be here on time', function () {
-
-
+                        +selectedChoices[0].selectedValue + ') ' + selectedChoices[0].selectedText + ' Please, be here on time', function () {
 
 
                         return app.router.navigate('/yourbooking/');
@@ -422,16 +541,39 @@
     app.on('pageAfterIn', function (page) {
 
 
-        // $$('#returnDate').val();
-        var logger_info = "you are (usermail):" + app.data.user.userEmail;
-        // console.log(app.data);
-        $$('#userinfo').html(logger_info);
+            // openalert();
+            if (page.route.url == '/bookings-storage/') {
 
-        // document.getElementById('userInfo').html
+                if (app.data.user.userEmail === 'John') {
 
 
-        // do something after page gets into the view\n' +
-    });
+                    // console.log("XXXXXXXX");
+                    app.dialog.alert('<b style="color:crimson"> Not authorised to be in this page, please login with proper credentials</b>', function () {
+
+                        return app.views.main.router.navigate('/', history = true);
+                        // return app.router.navigate('/home/', {reloadCurrent: false});
+                    });
+
+
+                }
+                // console.log(page);
+
+                // console.log(page.route);
+
+                // console.log(page.route.url=='/bookings-storage/');
+
+
+                // $$('#returnDate').val();
+                var logger_info = "you are (usermail):" + app.data.user.userEmail;
+                // console.log(app.data);
+                $$('#userinfo').html(logger_info);
+
+                // document.getElementById('userInfo').html
+
+                // do something after page gets into the view\n' +
+            }
+        }
+    );
 
 
     app.on('pageInit', function (page) {
@@ -518,7 +660,7 @@
 
                     // console.log(selection);
 
-                    selectedChoices[0] = selection;
+                    selectedChoices[3] = selection;
 
                     // console.log(selectedChoices);
 
@@ -528,7 +670,7 @@
         });
 
 
-        // Dropdown with all values for destination
+        // Dropdown with all values for pickup
         self.autocompleteDropdownAll = app.autocomplete.create({
 
                 inputEl: '#PickUPLocation_autocomplete-dropdown-all',
@@ -642,7 +784,7 @@
                         // alldata.push(selectedValue);
                         // console.log(selection);
 
-                        selectedChoices[1] = selection;
+                        selectedChoices[0] = selection;
 
                         // console.log(selectedChoices);
 
@@ -749,7 +891,7 @@
                     // alldata.push(selectedValue);
                     // console.log(selection);
 
-                    selectedChoices[2] = selection;
+                    selectedChoices[1] = selection;
 
                     // console.log(selectedChoices);
                 },
@@ -840,7 +982,7 @@
             on: {
                 change: function (value) {
 
-                    // console.log(value);
+                    console.log(value);
 
                     // var selectedValue = {"testajax": value};
                     selection = {
@@ -852,7 +994,7 @@
                     // alldata.push(selectedValue);
                     // console.log(selection);
 
-                    selectedChoices[3] = selection;
+                    selectedChoices[2] = selection;
 
                     // console.log(selectedChoices);
 

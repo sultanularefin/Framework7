@@ -87,7 +87,7 @@ if (!$result) {
     while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
 
 
-        $id = ($row['id']);
+        $id = ($row['car_id']);
 
         $name = ($row['name']);
 
