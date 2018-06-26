@@ -8,6 +8,42 @@ require_once './dbconfig.php';
 
 $email = $username = $password = $login_result = "";
 
+
+class user
+{
+    public $user_email;
+    public $password;
+    public $last_login;
+    public $username;
+    public $is_logged_in;
+    public $session_user_id;
+
+}
+
+//$session_check = isset($_POST["session_check"])?$_POST["session_check"]:"";
+
+if (isset($_POST["session_check"])) {
+
+    if (!isset($_SESSION['user'])) {
+
+        echo json_encode(array("value" => 3, "message" => 'Please login, with email and password'));
+        return;
+
+    } else {
+
+        $oneInstance = $_SESSION['user'];
+
+//    print_r($_SESSION);
+//    print_r($oneInstance);
+
+//    exit();
+
+        echo json_encode(array("value" => 2, "session_data" => $oneInstance));
+        return;
+    }
+}
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
@@ -124,24 +160,33 @@ if (isset($email) && isset($password)) {
 //        exit();
 
 
+//        $arrayOfBookings = array();
+
+        $oneInstance = new user();
+
+
         if ($password == $row[2]) {
-
-
             //session_start();
-            $_SESSION['username'] = $email_temp;
-            $_SESSION['password'] = $password_temp;
-            $_SESSION['id'] = $row[0];
-            $userId = $row[0];;
-            $_SESSION['username'] = $row[3];
-            $_SESSION['is_loggedin'] = TRUE;
+
+
+            $oneInstance->user_email = $email_temp;
+            $oneInstance->password = $password_temp;
+            $oneInstance->username = $row[3];
+            $oneInstance->last_login = date("Y-m-d");
+            $oneInstance->is_logged_in = true;
+            $oneInstance->session_user_id=$row[0];
             $login_result = "success";
+            $userid = $row[0];
 
 
-//            print("EVERYTHING IS GOOD");
-//            return;
+            $_SESSION['user'] = $oneInstance;
 
-//            header('Location: ./index.php');
-            //echo "<p><a href='user_post.php'>Click here to continue</a></p>";
+
+//            print_r($oneInstance);
+
+//            print_r($_SESSION['user']);
+
+
         } else {
             echo json_encode(array("value" => 0, "message" => 'Password not correct.'));
         }
@@ -160,7 +205,7 @@ if (isset($email) && isset($password)) {
 
 if ($login_result == "success") {
     // some action goes here under php
-    echo json_encode(array("value" => $userId, "message" => 'Successfully Registered'));
+    echo json_encode(array("value" => $userid, "message" => 'Successfully Registered'));
 }
 
 

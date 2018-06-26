@@ -173,7 +173,7 @@
                     <ul>
 
                         <!--login screen-->
-                        <li>
+                        <li id="login_li">
                             <a class="item-content item-link" href="/login-screen/">
                                 <div class="item-media">
                                     <i class="icon icon-f7"></i>
@@ -208,38 +208,54 @@
                         </li>
 
                         <!--<li>-->
-                            <!--<a class="item-content item-link" href="/book-vehicle/">-->
-                                <!--<div class="item-media">-->
-                                    <!--<i class="icon icon-f7"></i>-->
-                                <!--</div>-->
-                                <!--<div class="item-inner">-->
-                                    <!--<div class="item-title">Book Vehicle</div>-->
-                                <!--</div>-->
-                            <!--</a>-->
+                        <!--<a class="item-content item-link" href="/book-vehicle/">-->
+                        <!--<div class="item-media">-->
+                        <!--<i class="icon icon-f7"></i>-->
+                        <!--</div>-->
+                        <!--<div class="item-inner">-->
+                        <!--<div class="item-title">Book Vehicle</div>-->
+                        <!--</div>-->
+                        <!--</a>-->
                         <!--</li>-->
 
                         <!--<li>-->
-                            <!--<a class="item-content item-link" href="/editbookings/">-->
-                                <!--<div class="item-media">-->
-                                    <!--<i class="icon icon-f7"></i>-->
-                                <!--</div>-->
-                                <!--<div class="item-inner">-->
-                                    <!--<div class="item-title">Edit Bookings</div>-->
-                                <!--</div>-->
-                            <!--</a>-->
+                        <!--<a class="item-content item-link" href="/editbookings/">-->
+                        <!--<div class="item-media">-->
+                        <!--<i class="icon icon-f7"></i>-->
+                        <!--</div>-->
+                        <!--<div class="item-inner">-->
+                        <!--<div class="item-title">Edit Bookings</div>-->
+                        <!--</div>-->
+                        <!--</a>-->
                         <!--</li>-->
 
                         <!--<li>-->
-                            <!--<a class="item-content item-link" href="/vehiclebooking/">-->
-                                <!--<div class="item-media">-->
-                                    <!--<i class="icon icon-f7"></i>-->
-                                <!--</div>-->
-                                <!--<div class="item-inner">-->
-                                    <!--<div class="item-title">Vehicle Booking</div>-->
-                                <!--</div>-->
-                            <!--</a>-->
+                        <!--<a class="item-content item-link" href="/vehiclebooking/">-->
+                        <!--<div class="item-media">-->
+                        <!--<i class="icon icon-f7"></i>-->
+                        <!--</div>-->
+                        <!--<div class="item-inner">-->
+                        <!--<div class="item-title">Vehicle Booking</div>-->
+                        <!--</div>-->
+                        <!--</a>-->
                         <!--</li>-->
 
+                    </ul>
+
+                    <ul>
+                        <li id="logout_action" style="visibility:hidden;">
+
+                            <!--onclick="EditThis(' + onedata.bookings_id + ')" href="javascript:void(0)">'-->
+                            <a class="item-content item-link" onclick="logout_function(+ app.data.user.userid +'')"
+                               href="javascript:void(0)">
+                                <div class="item-media">
+                                    <i class="icon icon-f7"></i>
+                                </div>
+                                <div class="item-inner">
+                                    <div class="item-title">Logout</div>
+                                </div>
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <!--<div class="list simple-list searchbar-not-found">-->
@@ -353,6 +369,12 @@
 
 
     // console.log(mainView);
+
+    function logout_function(id) {
+
+
+        console.log(id);
+    }
 
 
     function EditThis(id) {
@@ -498,42 +520,58 @@
         var table = "bookings";
         var userid = parseInt(app.data.user.userid) === 0 ? 1 : app.data.user.userid;
 
-        app.request.post('../ReserveVehicle.php/', {
-                table: table,
-                data: ddldata,
-                date: returnDate,
-                passangerNumber: passanger_number,
-                userid: userid,
-            }, function (reserveData) {
 
+        app.request.post('../authenticate.php/', {
+                userdata: userdata,
+            }, function (success) {
 
-                console.log(reserveData);
-                var x = JSON.parse(reserveData);
+                console.log(success);
 
-
-                if (x.value === 1) {
-
-                    console.log(selectedChoices[0]);
-
-                    app.dialog.alert('<b>Congratulatoin, ' + app.data.user.userEmail + '  have Successfully made reservation of the vehicle </b>'
-                        + selectedChoices[2].selectedText +
-                        ' Your Ride will be available at (' +
-                        +selectedChoices[0].selectedValue + ') ' + selectedChoices[0].selectedText + ' Please, be here on time', function () {
-
-
-                        return app.router.navigate('/yourbooking/');
-
-                    });
-
-                    // return;
-
-                }
-                ;
+                return app.views.main.router.navigate('/login/');
             },
-            function (data) {
+            function (error) {
                 console.log("error");
 
             });
+
+
+        // app.request.post('../ReserveVehicle.php/', {
+        //         table: table,
+        //         data: ddldata,
+        //         date: returnDate,
+        //         passangerNumber: passanger_number,
+        //         userid: userid,
+        //     }, function (reserveData) {
+        //
+        //
+        //         console.log(reserveData);
+        //         var x = JSON.parse(reserveData);
+        //
+        //
+        //         if (x.value === 1) {
+        //
+        //             console.log(selectedChoices[0]);
+        //
+        //             app.dialog.alert('<b>Congratulatoin, ' + app.data.user.userEmail + '  have Successfully made reservation of the vehicle </b>'
+        //                 + selectedChoices[2].selectedText +
+        //                 ' Your Ride will be available at (' +
+        //                 +selectedChoices[0].selectedValue + ') ' + selectedChoices[0].selectedText + ' Please, be here on time', function () {
+        //
+        //
+        //                 // return app.views.main.router.navigate('/', history = true);
+        //                 // return app.router.navigate('/yourbooking/');
+        //             //
+        //             });
+        //
+        //             // return;
+        //
+        //         }
+        //         ;
+        //     },
+        //     function (data) {
+        //         console.log("error");
+        //
+        //     });
 
     }
 
@@ -541,39 +579,146 @@
     app.on('pageAfterIn', function (page) {
 
 
-            // openalert();
-            if (page.route.url == '/bookings-storage/') {
+        // console.log("Current url: ");
+        // console.log(page.route.url);
+        //
+        // return;
 
-                if (app.data.user.userEmail === 'John') {
-
-
-                    // console.log("XXXXXXXX");
-                    app.dialog.alert('<b style="color:crimson"> Not authorised to be in this page, please login with proper credentials</b>', function () {
-
-                        return app.views.main.router.navigate('/', history = true);
-                        // return app.router.navigate('/home/', {reloadCurrent: false});
-                    });
+        // openalert();
+        if (page.route.url === '/bookings-storage/') {
 
 
-                }
-                // console.log(page);
+            var session_check = 'session_check';
+            // check php session
 
-                // console.log(page.route);
-
-                // console.log(page.route.url=='/bookings-storage/');
+            app.request.post('../authenticate.php', {session_check: session_check,}, function (data) {
 
 
-                // $$('#returnDate').val();
-                var logger_info = "you are (usermail):" + app.data.user.userEmail;
-                // console.log(app.data);
-                $$('#userinfo').html(logger_info);
+                    // console.log(data);
 
-                // document.getElementById('userInfo').html
+                    var x = JSON.parse(data);
 
-                // do something after page gets into the view\n' +
-            }
+                    console.log(x);
+
+                    if (x.value == 2) {
+
+                        var user_data = x.session_data;
+
+
+                        console.log(user_data);
+
+
+                        // return;
+
+                        app.data.user.userEmail = user_data.user_email;
+
+                        app.data.user.password = user_data.password;
+                        app.data.user.userid = user_data.session_user_id;
+
+                        console.log(app.data.user);
+
+                        var logger_info = "you are (usermail):" + app.data.user.userEmail;
+                        // console.log(app.data);
+                        $$('#userinfo').html(logger_info);
+
+
+                        // var logger_info =  app.data.user.userEmail;
+                        //
+                        // $$('#userinfo').html(logger_info);
+
+                        jQuery("#login_li").css({
+                            'visibility': 'hidden'
+                        });
+
+                        // console.log('#login_li');
+
+
+                        jQuery("#logout_action").css({
+                            'visibility': 'visible'
+                        });
+
+
+                    }
+
+                    else {
+
+                        app.dialog.alert('<b style="color:crimson"> Not authorised to be in this page,' +
+                            ' please login with proper credentials</b>',
+                            function () {
+
+                                return app.views.main.router.navigate('/', history = true);
+                                // return app.router.navigate('/home/', {reloadCurrent: false});
+                            });
+
+
+                    }
+
+
+                },
+
+                // error in ajax
+                function () {
+                    var x = JSON.parse(data);
+
+                    console.log(x);
+
+                    app.dialog.alert('<b style="color:crimson">' + x.message + '</b>');
+
+
+                    // console.log("error");
+                });
+        }
+        ;
+
+
+        // if (app.data.user.userEmail === 'John') {
+        //
+        //
+        //     // console.log("XXXXXXXX");
+        //     app.dialog.alert('<b style="color:crimson"> Not authorised to be in this page,' +
+        //         ' please login with proper credentials</b>',
+        //         function () {
+        //
+        //             return app.views.main.router.navigate('/', history = true);
+        //             // return app.router.navigate('/home/', {reloadCurrent: false});
+        //         });
+        //
+        //
+        // }
+        // console.log(page);
+
+        // console.log(page.route);
+
+        // console.log(page.route.url=='/bookings-storage/');
+
+
+        // $$('#returnDate').val();
+        // var logger_info = "you are (usermail):" + app.data.user.userEmail;
+        // console.log(app.data);
+        // $$('#userinfo').html(logger_info);
+
+
+        // document.getElementById('userInfo').html
+
+        // do something after page gets into the view\n' +
+
+    });
+
+
+    app.on('pageReinit', function (page) {
+
+
+            console.log("pageReinit event in Router Instance Events");
+            // app.dialog.alert("aa");
         }
     );
+
+    app.on('page:reinit',)
+
+    $$(document).on('page:reinit', function (e, page) {
+        console.log("rr");
+        return app.views.main.router.navigate('/', history = true);
+    })
 
 
     app.on('pageInit', function (page) {
