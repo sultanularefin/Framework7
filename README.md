@@ -8,9 +8,9 @@ Frontend sends request to php file through Ajax and php file communicates with m
 	
 Database file and all other files are attached in this github link below.
  
-[Twitter](https://twitter.com/mdsultanul).
+[Twitter](https://twitter.com/mdsultanul)
 
-[LinkedIn](https://linkedin.com/in/mdarefin28/).
+[LinkedIn](https://linkedin.com/in/mdarefin28/)
 
 Thanks!
 
