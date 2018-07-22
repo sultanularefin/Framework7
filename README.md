@@ -8,4 +8,10 @@
 	Database file and all other files are attached in this github link below.
  
  
-	Copyright (cc) Md. Sultanul Arefin.
+[Twitter](https://twitter.com/mdsultanul).
+
+[LinkedIn](https://linkedin.com/in/mdarefin28/).
+
+Thanks!
+
+-Md. Sultanul Arefin
